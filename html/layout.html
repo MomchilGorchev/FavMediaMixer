@@ -1,0 +1,40 @@
+<head>
+    <title>Favourite Image Listing</title>
+</head>
+
+<template name="mainLayout">
+
+    <header>
+        <div class="header-inner">
+            <nav id="top-main-navbar" class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand pull-right" href="#">
+                            <img alt="Brand" src="images/alien-logo.png" class="logo">
+                        </a>
+                        <ul class="nav navbar-nav">
+                            <li><a href="#" class="main-link"><i class="mdi mdi-action-home md-2x"></i> Home</a></li>
+                            <li><a href="#" class="main-link"><i class="mdi mdi-action-dashboard md-2x"></i> Dashboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="create-new">
+                    <i class="md mdi-control-point md-2x"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    {{> yield}}
+
+    <footer>
+        <div class="footer-inner">
+            <p>Footer</p>
+        </div>
+    </footer>
+
+</template>
+
+
+
+
