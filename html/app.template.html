@@ -1,14 +1,18 @@
 <template name="home">
     <div class="app-body">
-        <h1>Upload your favourite files</h1>
-        <section class="file-upload">
-
+        <h1>Find your favourite media</h1>
+        <section class="autocomp-form">
             <form class="form-control">
-                <div class="form-control-wrapper fileinput">
-                    <label for="fileUpload">Upload anything you like</label>
-                    <input type="file" id="fileUpload" class="form-control"/>
+                <div class="form-control-wrapper autocomp">
+                    <label for="autocomp-field">Just start typing</label>
+                    <input type="text" id="autocomp-field" class="form-control"/>
+                </div>
+                <div class="result-box" id="resultBox">
                 </div>
             </form>
+        </section>
+        <section id="playlist">
+            <!--<iframe width="500" height="350" src="https://www.youtube.com/results?search_query=a" frameborder="0"></iframe>-->
         </section>
     </div>
 </template>

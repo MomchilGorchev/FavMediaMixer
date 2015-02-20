@@ -52,15 +52,26 @@ body{
   h1{
     text-align: center;
   }
-  .file-upload{
+  .autocomp-form{
     width: 50%;
     min-width:320px;
     margin: 50px auto;
-    .fileinput{
-
+    #autocomp-field{
+      color: white;
+      height: 50px;
+      font-size: 1.5em;
     }
     label{
       color: #ccc;
+    }
+    #resultBox{
+      background: #009587;
+      ul{
+        list-style-type: none;
+      }
+      a{
+        color:white;
+      }
     }
   }
 }
