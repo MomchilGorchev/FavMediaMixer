@@ -1,0 +1,70 @@
+/* Vendor prefixes for transition */
+@mixin vendor-transition($property: all, $duration: 0.5s, $effect: ease){
+
+  transition: $property $duration $effect;
+  -webkit-transition: $property $duration $effect;
+  -moz-transition: $property $duration $effect;
+  -o-transition: $property $duration $effect;
+
+}
+
+/* Customise animation apperance - works perfectly with Animate.css for example */
+@mixin customise-animation($duration: 2s, $delay: 1.5s, $iterations: infinite) {
+
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-iteration-count: $iterations;
+
+  -webkit-animation-duration: $duration;
+  -webkit-animation-delay: $delay;
+  -webkit-animation-iteration-count: $iterations;
+
+  -moz-animation-duration: $duration;
+  -moz-animation-delay: $delay;
+  -moz-animation-iteration-count: $iterations;
+
+  -o-animation-duration: $duration;
+  -o-animation-delay: $delay;
+  -o-animation-iteration-count: $iterations;
+
+}
+
+/* Easely center an element */
+@mixin center-box($width: 80%, $margin-up-down: 0){
+
+  float: none;
+  width: $width;
+  margin: $margin-up-down auto;
+
+}
+
+/* Cross browser scale */
+@mixin scale-element($valueX: 1.2, $valueY: 1.2){
+
+  -webkit-transform: scale($valueX, $valueY);
+  -moz-transform: scale($valueX, $valueY);
+  -ms-transform: scale($valueX, $valueY);
+  -o-transform: scale($valueX, $valueY);
+  transform: scale($valueX, $valueY);
+
+}
+
+/*Apply filter to an element. Filters are one of the following:*/
+// Greyscale
+// Blur
+// Saturate
+// Sepia
+// Hue Rotate
+// Invert
+// Brightness
+// Contrast
+// Opacity
+//
+// call like this: .class{ @include apply-filter(blur, 10%); }
+@mixin apply-filter($filter, $amount){
+  -webkit-filter: #{$filter}(#{$amount});
+  -moz-filter: #{$filter}(#{$amount});
+  -o-filter: #{$filter}(#{$amount});
+  -ms-filter: #{$filter}(#{$amount});
+  filter: #{$filter}(#{$amount});
+}

@@ -1,12 +1,18 @@
 /* CSS declarations go here */
+@import 'mixins';
 
 body{
   background: #37474F;
   color: #ccc;
-  i.mdi{
-    font-family: "Material-Design-Icons"!important;
+  font-family: 'Open Sans', "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+  i{
     color: #ccc;
     font-size:1.6em;
+  }
+}
+@for $i from 1 to 6{
+  h#{$i}{
+    font-family: 'Roboto Slab', Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
   }
 }
 #top-main-navbar.navbar{
@@ -19,8 +25,12 @@ body{
     background: #7E57C2;
     box-shadow:0 0 6px 1px rgb(49, 52, 51);
     border-radius: 50%;
-    right: 10%;
-    top: 46%;
+    right: 5%;
+    top: 60%;
+    cursor:pointer;
+    i{
+      padding:12px 14px;
+    }
   }
   .navbar-header{
     width: 100%;
@@ -32,6 +42,25 @@ body{
       .main-link{
         text-transform: uppercase;
       }
+    }
+  }
+}
+
+
+.app-body{
+  padding: 20px;
+  h1{
+    text-align: center;
+  }
+  .file-upload{
+    width: 50%;
+    min-width:320px;
+    margin: 50px auto;
+    .fileinput{
+
+    }
+    label{
+      color: #ccc;
     }
   }
 }
