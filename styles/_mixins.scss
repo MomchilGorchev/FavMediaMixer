@@ -1,3 +1,16 @@
+// VARIABLES
+$bg-color: #37474F;
+$text-color: #ccc;
+$nav-color: #009587;
+$action-color: #7E57C2;
+$white: white;
+$black: black;
+
+$header-font-stack: 'Roboto Slab', Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+$body-font-stack: 'Open Sans', "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+
+$box-shadow: 0 0 6px 1px rgb(49, 52, 51);
+
 /* Vendor prefixes for transition */
 @mixin vendor-transition($property: all, $duration: 0.5s, $effect: ease){
 
