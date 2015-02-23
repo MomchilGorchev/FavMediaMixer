@@ -1,7 +1,3 @@
-/**
- * Created by momchillgorchev on 20/02/15.
- */
-
 
 
 Meteor.startup(function(){
@@ -34,25 +30,28 @@ Meteor.startup(function(){
 
         // This call requires authentication
         getYtList: function(query){
-            if(query){
-                try{
-                    var result = HTTP.call(
-                        'GET',
-                        'https://www.googleapis.com/youtube/v3/search',
-                        {
-                            params: {
-                                'part': 'snippet',
-                                'q': query
+            if(AppUtil.gAuth() === true) {
+                if (query) {
+                    try {
+                        var result = HTTP.call(
+                            'GET',
+                            'https://www.googleapis.com/youtube/v3/search',
+                            {
+                                params: {
+                                    'part': 'snippet',
+                                    'q': query,
+                                    'key': 'AIzaSyDGAuQ9TiEWgBj3J_xAcMla9nzPT4P9XGY'
+                                }
                             }
-                        }
-                    );
-                }
-                catch(e){
-                    console.log(e);
-                    return false;
-                }
-                if(result.statusCode === 200 && result.content !== ''){
-                    return result.content;
+                        );
+                    }
+                    catch (e) {
+                        console.log(e);
+                        return false;
+                    }
+                    if (result.statusCode === 200 && result.content !== '') {
+                        return result.content;
+                    }
                 }
             }
         }
