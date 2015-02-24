@@ -84,7 +84,7 @@ body{
     list-style-type: none;
     li.video-wrapper{
       margin-bottom: 30px;
-      padding: 0 7px 30px 7px;
+      padding: 0 7px 40px 7px;
       border-bottom: 1px solid $text-color;
       position: relative;
       .title-link{
@@ -95,6 +95,25 @@ body{
         position: absolute;
         bottom: 15px;
         left: 145px;
+      }
+      .video-actions{
+        position: absolute;
+        bottom: 8px;
+        left: -15px;
+        .favourite{
+          display: inline-block;
+          margin-right: 4px;
+          border: 1px solid $text-color;
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+          padding-left: 6px;
+          padding-top: 2px;
+          cursor: pointer;
+          &:hover{
+            box-shadow: $box-shadow;
+          }
+        }
       }
     }
   }

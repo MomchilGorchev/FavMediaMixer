@@ -80,6 +80,8 @@ Template.home.events({
                                 '<p class="description">'+ snippet.description +'</p>'+
                                 '<ul class="video-actions">' +
                                     '<li class="favourite"><i class="fa fa-plus"></i></li>' +
+                                    '<li class="favourite"><i class="fa fa-star"></i></li>' +
+                                    '<li class="favourite"><i class="fa fa-share"></i></li>' +
                                 '</ul>'+
                             '</li>';
 
