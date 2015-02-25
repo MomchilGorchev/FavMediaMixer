@@ -1,5 +1,6 @@
 /* CSS declarations go here */
 @import 'mixins';
+@import "overlay";
 
 body{
   background: $bg-color;
@@ -69,7 +70,6 @@ body{
       background: $nav-color;
       position: absolute;
       width: 48%;
-      box-shadow: $box-shadow;
       z-index: 10;
       ul{
         list-style-type: none;
