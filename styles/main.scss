@@ -15,23 +15,23 @@ body{
     font-family: $header-font-stack;
   }
 }
+.create-new{
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  background: $action-color;
+  box-shadow: $box-shadow;
+  border-radius: 50%;
+  right: 5%;
+  top: 60%;
+  cursor:pointer;
+  i{
+    padding:12px 14px;
+  }
+}
 #top-main-navbar.navbar{
   position: relative;
   box-shadow: $box-shadow;
-  .create-new{
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background: $action-color;
-    box-shadow: $box-shadow;
-    border-radius: 50%;
-    right: 5%;
-    top: 60%;
-    cursor:pointer;
-    i{
-      padding:12px 14px;
-    }
-  }
   .navbar-header{
     width: 100%;
     .logo{
@@ -91,6 +91,10 @@ body{
         position: absolute;
         left:145px;
       }
+      .video-thumb{
+        width:120px;
+        height: 90px;
+      }
       .description{
         position: absolute;
         bottom: 15px;
@@ -103,15 +107,12 @@ body{
         .favourite{
           display: inline-block;
           margin-right: 4px;
-          border: 1px solid $text-color;
-          border-radius: 50%;
           width: 25px;
           height: 25px;
-          padding-left: 6px;
-          padding-top: 2px;
           cursor: pointer;
           &:hover{
-            box-shadow: $box-shadow;
+            @include scale-element(1.15, 1.15);
+            @include vendor-transition(all, 0.05s, ease-in);
           }
         }
       }

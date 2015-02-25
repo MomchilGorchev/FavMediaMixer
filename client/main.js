@@ -75,13 +75,13 @@ Template.home.events({
 
                     var snippet = items[i].snippet,
                         current =
-                            '<li class="video-wrapper" data-videoId="'+ items[i].id.videoId +'"><img src="'+ snippet.thumbnails.default.url +'">' +
+                            '<li class="video-wrapper" data-videoId="'+ items[i].id.videoId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
                                 '<a href="https://www.youtube.com/watch?v='+ items[i].id.videoId +'" class="title-link" target="_blank">'+ snippet.title +'</a>'+
                                 '<p class="description">'+ snippet.description +'</p>'+
                                 '<ul class="video-actions">' +
-                                    '<li class="favourite"><i class="fa fa-plus"></i></li>' +
-                                    '<li class="favourite"><i class="fa fa-star"></i></li>' +
-                                    '<li class="favourite"><i class="fa fa-share"></i></li>' +
+                                    '<li class="favourite" data-action="add"><i class="fa fa-plus"></i></li>' +
+                                    '<li class="favourite" data-action="play"><i class="fa fa-play"></i></li>' +
+                                    '<li class="favourite" data-action="share"><i class="fa fa-share"></i></li>' +
                                 '</ul>'+
                             '</li>';
 

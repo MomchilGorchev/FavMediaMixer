@@ -7,30 +7,14 @@
 
     <header>
         <div class="header-inner">
-            <nav id="top-main-navbar" class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#" class="main-link"><i class="fa fa-home fa-2x"></i> Home</a></li>
-                            <li><a href="#" class="main-link"><i class="fa fa-tachometer fa-2x"></i> Dashboard</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="create-new">
-                    <a class="create-new-link">
-                        <i class="fa fa-plus fa-2x"></i>
-                    </a>
-                </div>
-            </nav>
+            {{> header}}
         </div>
     </header>
 
     {{> yield}}
 
     <footer>
-        <div class="footer-inner">
-            <p>Footer</p>
-        </div>
+        {{> footer}}
     </footer>
 
 </template>
