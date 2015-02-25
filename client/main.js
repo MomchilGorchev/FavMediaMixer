@@ -75,7 +75,7 @@ Template.home.events({
 
                     var snippet = items[i].snippet,
                         current =
-                            '<li class="video-wrapper" data-videoId="'+ items[i].id.videoId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
+                            '<li class="video-wrapper" data-playing="false" data-videoId="'+ items[i].id.videoId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
                                 '<a href="https://www.youtube.com/watch?v='+ items[i].id.videoId +'" class="title-link" target="_blank">'+ snippet.title +'</a>'+
                                 '<p class="description">'+ snippet.description +'</p>'+
                                 '<ul class="video-actions">' +
@@ -96,8 +96,32 @@ Template.home.events({
                 console.log(err);
             }
         });
+    },
 
+    'click .favourite': function(event, template){
+        var _this = event.currentTarget,
+            dataAction = _this.getAttribute('data-action'),
+            parent = $(_this).closest('.video-wrapper'),
+            videoId = parent.attr('data-videoId'),
+            dataState = parent.attr('data-playing');
 
+        if(dataAction === 'play'){
+            if(dataState === 'false'){
+                var src = 'https://www.youtube.com/embed/'+ videoId,
+                    iframe = document.createElement('iframe');
+                iframe.setAttribute('src', src);
+                iframe.style.width = '500px'; iframe.style.height = '350px';
+                console.log(iframe);
+                // Refactor to use overlay
+                parent.append(iframe);
+
+                _this.querySelector('i').setAttribute('class', 'fa fa-stop');
+                parent.attr('data-playing', 'true');
+            } else {
+                parent.attr('data-playing', 'false').find('iframe').detach();
+                _this.querySelector('i').setAttribute('class', 'fa fa-play');
+            }
+        }
     }
 
 });
