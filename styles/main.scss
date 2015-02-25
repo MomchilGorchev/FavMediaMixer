@@ -22,8 +22,9 @@ body{
   background: $action-color;
   box-shadow: $box-shadow;
   border-radius: 50%;
-  right: 5%;
+  right: 50%;
   top: 60%;
+  margin-right:-25px;
   cursor:pointer;
   i{
     padding:12px 14px;
@@ -69,6 +70,7 @@ body{
       position: absolute;
       width: 48%;
       box-shadow: $box-shadow;
+      z-index: 10;
       ul{
         list-style-type: none;
       }
