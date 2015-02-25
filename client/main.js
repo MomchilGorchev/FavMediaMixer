@@ -1,23 +1,3 @@
-var handleFeed;
-Meteor.startup(function(){
-    handleFeed = function(res){
-
-        var resultBox = document.getElementById('result-box'), resultList, buffer = [];
-
-        for(var i = 0; i < res.length; i++){
-            var current = '<li>'+ res[i] +'</li>';
-            buffer.push(current);
-        }
-        resultList = document.createElement('ul');
-        resultList.innerHTML = buffer;
-
-        resultBox.appendChild(resultList);
-
-        console.log(res);
-    };
-});
-
-
 Template.home.events({
     'keyup #autocomp-field': function(event, template){
 
@@ -75,7 +55,7 @@ Template.home.events({
 
                     var snippet = items[i].snippet,
                         current =
-                            '<li class="video-wrapper" data-playing="false" data-videoId="'+ items[i].id.videoId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
+                            '<li class="video-wrapper" data-videoId="'+ items[i].id.videoId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
                                 '<a href="https://www.youtube.com/watch?v='+ items[i].id.videoId +'" class="title-link" target="_blank">'+ snippet.title +'</a>'+
                                 '<p class="description">'+ snippet.description +'</p>'+
                                 '<ul class="video-actions">' +
@@ -103,21 +83,36 @@ Template.home.events({
             dataAction = _this.getAttribute('data-action'),
             parent = $(_this).closest('.video-wrapper'),
             videoId = parent.attr('data-videoId'),
-            dataState = parent.attr('data-playing'),
+            description = parent.find('.description').text(),
+            title = parent.find('.title-link').text(),
             overlay = template.find('.overlay');
 
         if(dataAction === 'play'){
-            if(dataState === 'false'){
-                var src = 'https://www.youtube.com/embed/'+ videoId,
-                    iframe = document.createElement('iframe');
-                iframe.setAttribute('src', src);
-                $(overlay).addClass('open').find('.content').append([
-                        parent.find('.title-link').clone().detach(),
-                        parent.find('.description').clone().detach(),
-                        iframe
-                    ]
-                );
-            }
+            var src = 'https://www.youtube.com/embed/'+ videoId +'?autoplay=1',
+                iframe = document.createElement('iframe');
+            iframe.setAttribute('src', src);
+            $(overlay).addClass('open').find('.content').append([
+                    parent.find('.title-link').clone().detach(),
+                    parent.find('.description').clone().detach(),
+                    iframe
+                ]
+            );
+        } else if(dataAction === 'add'){
+            var addFavourite = {
+                title: title,
+                description: description,
+                videoId: videoId,
+                user: Meteor.user().emails[0].address
+            };
+
+            // TODO add the backend method
+            Meteor.call('addPlaylistEntry', addFavourite, function(err, res){
+               if(!err){
+                   FlashMessages.sendSuccess('Video added to favourite');
+               } else {
+                   FlashMessages.sendError('Something got wrong...');
+               }
+            });
         }
     },
 
