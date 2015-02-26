@@ -3,6 +3,19 @@
 Meteor.startup(function(){
 
     return Meteor.methods({
+        addToFavourite: function(fav){
+            if(fav){
+                var result = Favourites.insert({
+                    title: fav.title,
+                    description: fav.description,
+                    videoId: fav.videoId,
+                    user: fav.user
+                });
+                console.log(result);
+                return true;
+            }
+        },
+
         externalCall: function(query){
             if(query){
                 try{
@@ -40,7 +53,7 @@ Meteor.startup(function(){
                                 params: {
                                     'part': 'snippet',
                                     'q': query,
-                                    'key': 'AIzaSyDGAuQ9TiEWgBj3J_xAcMla9nzPT4P9XGY'
+                                    'key': 'AIzaSyARwdpTVqwlj4DZtYyymfqntrfqJL9DN-U'
                                 }
                             }
                         );

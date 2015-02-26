@@ -91,6 +91,7 @@ Template.home.events({
             var src = 'https://www.youtube.com/embed/'+ videoId +'?autoplay=1',
                 iframe = document.createElement('iframe');
             iframe.setAttribute('src', src);
+            iframe.setAttribute('allowfullscreen', 'true');
             $(overlay).addClass('open').find('.content').append([
                     parent.find('.title-link').clone().detach(),
                     parent.find('.description').clone().detach(),
@@ -105,12 +106,13 @@ Template.home.events({
                 user: Meteor.user().emails[0].address
             };
 
+            console.log('kickin');
             // TODO add the backend method
-            Meteor.call('addPlaylistEntry', addFavourite, function(err, res){
+            Meteor.call('addToFavourite', addFavourite, function(err, res){
                if(!err){
-                   FlashMessages.sendSuccess('Video added to favourite');
+                   FlashMessages.sendSuccess('Added to Favourites!');
                } else {
-                   FlashMessages.sendError('Something got wrong...');
+                   FlashMessages.sendError('Error occurred, please try again!');
                }
             });
         }
