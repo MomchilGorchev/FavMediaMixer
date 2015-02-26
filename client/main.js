@@ -85,6 +85,7 @@ Template.home.events({
             videoId = parent.attr('data-videoId'),
             description = parent.find('.description').text(),
             title = parent.find('.title-link').text(),
+            thumb = parent.find('.video-thumb').attr('src'),
             overlay = template.find('.overlay');
 
         if(dataAction === 'play'){
@@ -102,12 +103,11 @@ Template.home.events({
             var addFavourite = {
                 title: title,
                 description: description,
+                thumbnail: thumb,
                 videoId: videoId,
                 user: Meteor.user().emails[0].address
             };
 
-            console.log('kickin');
-            // TODO add the backend method
             Meteor.call('addToFavourite', addFavourite, function(err, res){
                if(!err){
                    FlashMessages.sendSuccess('Added to Favourites!');
@@ -119,7 +119,10 @@ Template.home.events({
     },
 
     'click .overlay-close': function(event, template){
-        $('.overlay').removeClass('open').find('.content').empty();
+        $(template).find('.overlay')
+            .removeClass('open')
+            .find('.content')
+            .empty();
     }
 
 });

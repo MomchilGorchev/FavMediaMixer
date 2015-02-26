@@ -1,0 +1,15 @@
+<template name="favourites">
+    <ul>
+        {{#each favs}}
+            <li class="video-wrapper" data-videoId="{{videoId}}"><img class="video-thumb" src="{{thumb}}">
+            <a href="https://www.youtube.com/watch?v={{videoId}}" class="title-link" target="_blank">{{title}}</a>
+            <p class="description">{{description}}</p>
+            <ul class="video-actions">
+                <li class="favourite" data-action="add"><i class="fa fa-plus"></i></li>
+                <li class="favourite" data-action="play"><i class="fa fa-play"></i></li>
+                <li class="favourite" data-action="share"><i class="fa fa-share"></i></li>
+                </ul>
+            </li>
+        {{/each}}
+    </ul>
+</template>

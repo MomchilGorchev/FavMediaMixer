@@ -12,16 +12,16 @@ Router.configure({
 UserAccessController = RouteController.extend({
     //On before action hook to check if the user is logged in
     onBeforeAction: function(){
-        //if (!(Meteor.loggingIn() || Meteor.user())) {
-        //    this.render("login");
-        //} else{
+        if (!(Meteor.loggingIn() || Meteor.user())) {
+            this.render("login");
+        } else{
             // Subscriptions
-            Meteor.subscribe('playlists');
+            Meteor.subscribe('favourites');
             // After IR > 1.* you need to use this.next()
             // for better use of connection middleware
             this.next();
         }
-    //}
+    }
 });
 
 Router.map(function () {
@@ -30,6 +30,20 @@ Router.map(function () {
         path: '/',
         controller: UserAccessController
     });
+
+    this.route('favourites', {
+        path: '/favourites',
+        controller: UserAccessController
+    });
+
+    this.route('login', {
+        path: '/login',
+        waitOn: function() {
+            if(Meteor.user()) {
+                this.redirect("home");
+            }
+        }
+    })
 
 });
 

@@ -12,6 +12,8 @@ iron:router
 ixdi:material-design-iconic-font
 fortawesome:fontawesome
 http
-npvn:accounts-ui-bootstrap-3
 accounts-password
 mrt:flash-messages
+ian:accounts-ui-bootstrap-3
+accounts-google
+accounts-github

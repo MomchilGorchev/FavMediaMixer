@@ -48,6 +48,39 @@ body{
   }
 }
 
+// GLOBAL
+::-webkit-input-placeholder { /* WebKit browsers */
+  color:    $bg-color;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    $bg-color;
+  opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    $bg-color;
+  opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:    $bg-color;
+}
+[placeholder]{
+  color: $bg-color;
+}
+div.dropdown-menu{
+  div.navbar-form{
+    button.btn-GitHub{
+      background-color: #2196F3;
+    }
+    button.btn-Google{
+      background-color: #FF5722;
+    }
+  }
+  button#login-buttons-open-change-password{
+    background-color: $action-color;
+  }
+}
+//END GLOBAL
+
 
 .app-body{
   padding: 20px;
