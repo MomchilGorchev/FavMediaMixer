@@ -36,16 +36,14 @@ body{
   box-shadow: $box-shadow;
   .navbar-header{
     width: 100%;
-    .logo{
-      width:50px;
-      margin-top: -18px;
-    }
     ul.navbar-nav{
-      .main-link{
-        text-transform: uppercase;
-      }
+
     }
   }
+}
+.link-text{
+  float:right;
+  margin: 4px;
 }
 
 // GLOBAL
