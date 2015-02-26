@@ -9,6 +9,7 @@ Meteor.startup(function(){
                     title: fav.title,
                     description: fav.description,
                     videoId: fav.videoId,
+                    thumb: fav.thumbnail,
                     user: fav.user
                 });
                 console.log(result);

@@ -119,7 +119,7 @@ Template.home.events({
     },
 
     'click .overlay-close': function(event, template){
-        $(template).find('.overlay')
+        $('.overlay')
             .removeClass('open')
             .find('.content')
             .empty();
