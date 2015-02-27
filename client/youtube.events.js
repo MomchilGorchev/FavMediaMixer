@@ -1,4 +1,4 @@
-Template.home.events({
+Template.youtube.events({
     'keyup #autocomp-field': function(event, template){
 
         var _this = event.currentTarget,
@@ -41,7 +41,7 @@ Template.home.events({
             playlist = template.find('#playlist'), feed = [],
             resultBox = template.find('#resultBox'),
             searchedTitle = _this.text,
-            searchField = template.find('#autocomp-field');
+            searchField = template.find('#autocomp-field'), ytLink, ytType, correctId, mainAction;
 
         Meteor.call('getYtList', dataSource, function(err, res){
             if(!err){
@@ -53,14 +53,29 @@ Template.home.events({
                     //TODO implement response display
                     console.log(items[i]);
 
+                    console.log(items[i].id.videoId);
+
+                    if(items[i].id.videoId !== undefined){
+                        ytLink = 'https://www.youtube.com/watch?v=' + items[i].id.videoId;
+                        correctId = items[i].id.videoId;
+                        ytType = 'video';
+                        mainAction = 'play'
+                    } else {
+                        ytLink = 'https://www.youtube.com/user/' + items[i].snippet.channelTitle;
+                        correctId = items[i].id.channelId;
+                        ytType = 'channel';
+                        mainAction = 'globe'
+                    }
+
+
                     var snippet = items[i].snippet,
                         current =
-                            '<li class="video-wrapper" data-videoId="'+ items[i].id.videoId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
-                                '<a href="https://www.youtube.com/watch?v='+ items[i].id.videoId +'" class="title-link" target="_blank">'+ snippet.title +'</a>'+
+                            '<li class="video-wrapper" data-yttype="'+ ytType +'" data-itemId="'+ correctId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
+                                '<a href="'+ ytLink +'" class="title-link" target="_blank">'+ snippet.title +'</a>'+
                                 '<p class="description">'+ snippet.description +'</p>'+
                                 '<ul class="video-actions">' +
+                                    '<li class="favourite" data-action="'+ mainAction +'"><i class="fa fa-'+ mainAction +'"></i></li>' +
                                     '<li class="favourite" data-action="add"><i class="fa fa-plus"></i></li>' +
-                                    '<li class="favourite" data-action="play"><i class="fa fa-play"></i></li>' +
                                     '<li class="favourite" data-action="share"><i class="fa fa-share"></i></li>' +
                                 '</ul>'+
                             '</li>';
@@ -82,7 +97,8 @@ Template.home.events({
         var _this = event.currentTarget,
             dataAction = _this.getAttribute('data-action'),
             parent = $(_this).closest('.video-wrapper'),
-            videoId = parent.attr('data-videoId'),
+            videoId = parent.attr('data-itemId'),
+            ytType = parent.attr('data-yttype'),
             description = parent.find('.description').text(),
             title = parent.find('.title-link').text(),
             thumb = parent.find('.video-thumb').attr('src'),
@@ -105,7 +121,8 @@ Template.home.events({
                 description: description,
                 thumbnail: thumb,
                 videoId: videoId,
-                user: Meteor.user().emails[0].address
+                user: Meteor.user().emails[0].address,
+                type: ytType
             };
 
             Meteor.call('addToFavourite', addFavourite, function(err, res){
@@ -115,6 +132,8 @@ Template.home.events({
                    FlashMessages.sendError('Error occurred, please try again!');
                }
             });
+        } else if(dataAction == 'globe'){
+            window.open(parent.find('.title-link').attr('href'), '_blank');
         }
     },
 

@@ -31,6 +31,11 @@ Router.map(function () {
         controller: UserAccessController
     });
 
+    this.route('youtube', {
+        path: '/youtube',
+        controller: UserAccessController
+    });
+
     this.route('favourites', {
         path: '/favourites',
         controller: UserAccessController

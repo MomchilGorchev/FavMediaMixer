@@ -17,16 +17,15 @@ body{
   }
 }
 .create-new{
-  position: absolute;
+  position: fixed;
   height: 50px;
   width: 50px;
   background: $action-color;
   box-shadow: $box-shadow;
   border-radius: 50%;
-  right: 50%;
-  top: 60%;
-  margin-right:-25px;
-  cursor:pointer;
+  right: 20px;
+  bottom: 50px;
+  cursor: pointer;
   i{
     padding:12px 14px;
   }
