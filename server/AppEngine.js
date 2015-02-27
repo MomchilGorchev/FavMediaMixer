@@ -43,6 +43,7 @@ Meteor.startup(function(){
         },
 
         // This call requires authentication
+
         getYtList: function(query){
             if(AppUtil.gAuth() === true) {
                 if (query) {
