@@ -41,6 +41,11 @@ Router.map(function () {
         controller: UserAccessController
     });
 
+    this.route('drive', {
+        path: '/drive',
+        controller: UserAccessController
+    });
+
     this.route('login', {
         path: '/login',
         waitOn: function() {

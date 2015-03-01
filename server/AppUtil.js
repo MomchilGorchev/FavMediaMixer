@@ -3,6 +3,18 @@
  */
 
 if(Meteor.isServer === true){
+
+    HTTPJWT.setJWTOptions({ // Just call this once to set JWT
+        email: '163205371942-3fqnb26087bj2ijv1jcptc8ordp7jt2r@developer.gserviceaccount.com',
+        key: Assets.getText('key.pem'), // Get key file from assets
+        scopes: [
+            'https://www.googleapis.com/auth/plus.profile.emails.read', // New scope name
+            'https://www.googleapis.com/auth/drive' // Old scope name
+        ]
+    });
+
+
+
     console.log('Im running');
     AppUtil = {
         gAuth: function(){
@@ -12,7 +24,8 @@ if(Meteor.isServer === true){
             // you need to register your own client ID.
             var OAUTH2_CLIENT_ID = '163205371942-ukbna72ej6vunofllhehc05a4u6054se.apps.googleusercontent.com';
             var OAUTH2_SCOPES = [
-                'https://www.googleapis.com/auth/youtube'
+                'https://www.googleapis.com/auth/youtube',
+                'https://www.googleapis.com/auth/drive'
             ];
 
             // Upon loading, the Google APIs JS client automatically invokes this callback.

@@ -69,6 +69,27 @@ Meteor.startup(function(){
                     }
                 }
             }
+        },
+
+        // DRIVE
+        getDriveContents: function(){
+            try {
+                // Accessing endpoints REST api
+                var url = 'https://www.googleapis.com/drive/v2/files';
+                var result = HTTPJWT.get(url);
+
+                if(result){
+                    return result.data; // Access your data
+                }
+            }
+            catch (e) {
+                console.log(e);
+                return false;
+            }
+            //if (result.statusCode === 200 && result.content !== '') {
+            //    return result.content;
+            //}
         }
+
     });
 });
