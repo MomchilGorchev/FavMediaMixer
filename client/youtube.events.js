@@ -94,6 +94,7 @@ Template.youtube.events({
     },
 
     'click .favourite': function(event, template){
+        event.preventDefault();
         var _this = event.currentTarget,
             dataAction = _this.getAttribute('data-action'),
             parent = $(_this).closest('.video-wrapper'),
@@ -127,9 +128,9 @@ Template.youtube.events({
 
             Meteor.call('addToFavourite', addFavourite, function(err, res){
                if(!err){
-                   FlashMessages.sendSuccess('Added to Favourites!');
+                   FlashMessages.sendSuccess('<i class="fa fa-heart"></i> Added to Favourites!');
                } else {
-                   FlashMessages.sendError('Error occurred, please try again!');
+                   FlashMessages.sendError('<i class="fa fa-warning"></i> Error occurred, please try again!');
                }
             });
         } else if(dataAction == 'globe'){
