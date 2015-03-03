@@ -75,11 +75,12 @@ Meteor.startup(function(){
         getDriveContents: function(){
             try {
                 // Accessing endpoints REST api
-                var url = 'https://www.googleapis.com/drive/v2/files';
+                var url = 'https://www.googleapis.com/drive/v2/files?maxResults=100';
                 var result = HTTPJWT.get(url);
 
                 if(result){
-                    return result.data; // Access your data
+                    //console.log(result);
+                    return result.content; // Access your data
                 }
             }
             catch (e) {
@@ -89,6 +90,31 @@ Meteor.startup(function(){
             //if (result.statusCode === 200 && result.content !== '') {
             //    return result.content;
             //}
+        },
+
+        // GITHUB
+        getGithubFeed: function(user){
+            if(user){
+                try{
+                    var result = HTTP.call(
+                        'GET',
+                        'https://api.github.com/users/'+ user +'/events',
+                        {
+                            headers:{
+                                'User-Agent': 'FMM'
+                            }
+                        }
+                    );
+
+                    if(result){
+                        return result.content;
+                    }
+                }
+                catch(e){
+                    console.log(e);
+                    return false;
+                }
+            }
         }
 
     });

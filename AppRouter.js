@@ -46,6 +46,11 @@ Router.map(function () {
         controller: UserAccessController
     });
 
+    this.route('github', {
+        path: '/github',
+        controller: UserAccessController
+    });
+
     this.route('login', {
         path: '/login',
         waitOn: function() {

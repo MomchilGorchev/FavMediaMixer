@@ -8,12 +8,10 @@ if(Meteor.isServer === true){
         email: '163205371942-3fqnb26087bj2ijv1jcptc8ordp7jt2r@developer.gserviceaccount.com',
         key: Assets.getText('key.pem'), // Get key file from assets
         scopes: [
-            'https://www.googleapis.com/auth/plus.profile.emails.read', // New scope name
+            //'https://www.googleapis.com/auth/plus.profile.emails.read', // New scope name
             'https://www.googleapis.com/auth/drive' // Old scope name
         ]
     });
-
-
 
     console.log('Im running');
     AppUtil = {
