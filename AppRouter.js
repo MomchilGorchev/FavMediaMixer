@@ -56,6 +56,11 @@ Router.map(function () {
         controller: UserAccessController
     });
 
+    this.route('rss', {
+        path: '/rss',
+        controller: UserAccessController
+    });
+
     this.route('login', {
         path: '/login',
         waitOn: function() {

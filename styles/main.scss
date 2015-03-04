@@ -50,21 +50,7 @@ body{
 }
 
 // GLOBAL
-input::-webkit-input-placeholder { /* WebKit browsers */
-  color:    $bg-color;
-}
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color:    $bg-color;
-  opacity:  1;
-}
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color:    $bg-color;
-  opacity:  1;
-}
-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-  color:    $bg-color;
-}
-[placeholder]{
+input[placeholder], [placeholder], *[placeholder] {
   color: $bg-color;
 }
 div.dropdown-menu{
@@ -177,6 +163,17 @@ a.navbar-brand{
         }
       }
     }
+  }
+}
+
+.rss.container{
+  width: 90%;
+  margin: 10px auto;
+  iframe{
+    width: 620px;
+    height: 330px;
+    margin: 0 auto;
+    display: block;
   }
 }
 footer{
