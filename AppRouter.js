@@ -41,13 +41,18 @@ Router.map(function () {
         controller: UserAccessController
     });
 
-    this.route('drive', {
-        path: '/drive',
-        controller: UserAccessController
-    });
+    //this.route('twi', {
+    //    path: '/drive',
+    //    controller: UserAccessController
+    //});
 
     this.route('github', {
         path: '/github',
+        controller: UserAccessController
+    });
+
+    this.route('twitter', {
+        path: '/twitter',
         controller: UserAccessController
     });
 
