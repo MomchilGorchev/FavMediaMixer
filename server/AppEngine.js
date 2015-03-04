@@ -116,6 +116,58 @@ Meteor.startup(function(){
                     return false;
                 }
             }
+        },
+
+        getRssFeed: function(flag){
+            if(flag){
+                if(flag !== 'default'){
+                    var url = '';
+                    if(flag === 'top_stories'){
+                        url = 'http://feeds.bbci.co.uk/news/rss.xml';
+                    } else {
+                        url = 'http://feeds.bbci.co.uk/news/'+ flag +'/rss.xml';
+                    }
+                    try {
+                        var result = HTTP.call('GET', url);
+                        if(result.statusCode == 200 && result.content){
+                            return result.content;
+                        } else {
+                            return 'Error response: ' + result.statusCode;
+                        }
+                    }
+                    catch(e){
+                        console.log(e);
+                        return false;
+                    }
+                } else {
+                    return 'Please choose topic';
+                }
+            } else {
+                return 'Parameters required!'
+            }
+        },
+
+        addToTempCollection: function(item){
+            if(item){
+                var result = RssFeed.insert({
+                    title: item.title,
+                    description: item.description,
+                    link: item.link,
+                    pubDate: item.pubDate,
+                    thumb: item.thumb
+                });
+                if(result){
+                    return true;
+                }
+            }
+        },
+
+        clearTempCollection: function(collection){
+            if(global[collection].find().count() > 0){
+                if(global[collection].remove({})){
+                    return true;
+                }
+            }
         }
 
     });

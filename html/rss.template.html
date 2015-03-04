@@ -1,6 +1,26 @@
 <template name="rss">
     <h1>RSS Feeds</h1>
     <div class="container rss rss-first">
-        <iframe src="http://output61.rssinclude.com/output?type=iframe&amp;id=973137&amp;hash=8a0271be8139500adff0e8e3be44d00c"></iframe>
+        <label for="rss-title">Choose Topic</label>
+        <select id="rss-title">
+            <option value="default">Please select topic</option>
+            <option value="top_stories">Top Stories</option>
+            <option value="world">World</option>
+            <option value="uk">UK</option>
+            <option value="business">Business</option>
+            <option value="politics">Politics</option>
+            <option value="health">Health</option>
+            <option value="education">Education</option>
+            <option value="science_and_environment">Science and Environment</option>
+            <option value="technology">Technology</option>
+            <option value="entertainment_and_arts">Entertainment and Arts</option>
+        </select>
+        <span class="headlines pull-right">Headlines: {{headlinesCount}}</span>
+        <div class="rss-display">
+            {{#each rssItems}}
+                {{> rssItem}}
+            {{/each}}
+        </div>
+        <!--<iframe src="http://output61.rssinclude.com/output?type=iframe&amp;id=973137&amp;hash=8a0271be8139500adff0e8e3be44d00c"></iframe>-->
     </div>
 </template>

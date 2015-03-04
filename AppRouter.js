@@ -17,6 +17,7 @@ UserAccessController = RouteController.extend({
         } else{
             // Subscriptions
             Meteor.subscribe('favourites');
+            Meteor.subscribe('rssfeed');
             // After IR > 1.* you need to use this.next()
             // for better use of connection middleware
             this.next();

@@ -6,6 +6,7 @@ body{
   background: $bg-color;
   color: $text-color;
   font-family: $body-font-stack;
+  padding-bottom: 50px;
   i{
     color: $text-color;
     font-size:1.6em;
@@ -174,6 +175,21 @@ a.navbar-brand{
     height: 330px;
     margin: 0 auto;
     display: block;
+  }
+}
+.rssItem{
+  padding: 7px;
+  margin: 10px;
+  background: darken($bg-color, 15%);
+  .pubDate{
+    color: $acent-color;
+  }
+  .rssItem-desc{
+    width: 70%;
+  }
+  .rssItem-thumb{
+    margin-top: -45px;
+    margin-right: 25px;
   }
 }
 footer{
