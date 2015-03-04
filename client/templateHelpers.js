@@ -23,3 +23,11 @@ Template.rss.helpers({
         return RssFeed.find().count();
     }
 });
+
+Template.profile.helpers({
+    userInfo: function(){
+
+        return [Meteor.user().profile.name, Meteor.user()._id];
+
+    }
+});

@@ -31,6 +31,10 @@ Router.map(function () {
         path: '/',
         controller: UserAccessController
     });
+    this.route('profile', {
+        path: '/profile',
+        controller: UserAccessController
+    });
 
     this.route('youtube', {
         path: '/youtube',
