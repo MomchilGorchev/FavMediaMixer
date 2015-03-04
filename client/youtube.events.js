@@ -117,12 +117,14 @@ Template.youtube.events({
                 ]
             );
         } else if(dataAction === 'add'){
+
             var addFavourite = {
                 title: title,
                 description: description,
                 thumbnail: thumb,
                 videoId: videoId,
-                user: Meteor.user().emails[0].address,
+                userId: Meteor.user()._id,
+                user: Meteor.user().profile.name || Meteor.user().emails[0].address,
                 type: ytType
             };
 

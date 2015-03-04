@@ -98,6 +98,15 @@ a.navbar-brand{
   margin-left: -25%;
   box-shadow: $box-shadow;
 }
+.search-box{
+  width: 50%;
+  min-width:320px;
+  margin: 50px auto;
+}
+.search-field{
+  color: $white;
+  font-size: 1.2em;
+}
 //END GLOBAL
 
 
@@ -107,14 +116,6 @@ a.navbar-brand{
     text-align: center;
   }
   .autocomp-form{
-    width: 50%;
-    min-width:320px;
-    margin: 50px auto;
-    #autocomp-field{
-      color: $white;
-
-      font-size: 1.2em;
-    }
     label{
       color: $text-color;
     }

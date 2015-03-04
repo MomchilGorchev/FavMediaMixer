@@ -10,7 +10,8 @@ Meteor.startup(function(){
                     description: fav.description,
                     videoId: fav.videoId,
                     thumb: fav.thumbnail,
-                    user: fav.user
+                    userId: fav.userId,
+                    userInfo: fav.user
                 });
                 console.log(result);
                 return true;
@@ -71,26 +72,26 @@ Meteor.startup(function(){
             }
         },
 
-        // DRIVE
-        getDriveContents: function(){
-            try {
-                // Accessing endpoints REST api
-                var url = 'https://www.googleapis.com/drive/v2/files?maxResults=100';
-                var result = HTTPJWT.get(url);
-
-                if(result){
-                    //console.log(result);
-                    return result.content; // Access your data
-                }
-            }
-            catch (e) {
-                console.log(e);
-                return false;
-            }
-            //if (result.statusCode === 200 && result.content !== '') {
-            //    return result.content;
-            //}
-        },
+        // DRIVE - SUPPORT NOT READY FOR SERVER JS APPS
+        //getDriveContents: function(){
+        //    try {
+        //        // Accessing endpoints REST api
+        //        var url = 'https://www.googleapis.com/drive/v2/files?maxResults=100';
+        //        var result = HTTPJWT.get(url);
+        //
+        //        if(result){
+        //            //console.log(result);
+        //            return result.content; // Access your data
+        //        }
+        //    }
+        //    catch (e) {
+        //        console.log(e);
+        //        return false;
+        //    }
+        //    //if (result.statusCode === 200 && result.content !== '') {
+        //    //    return result.content;
+        //    //}
+        //},
 
         // GITHUB
         getGithubFeed: function(user){
