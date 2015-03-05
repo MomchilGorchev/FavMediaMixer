@@ -28,8 +28,7 @@ Meteor.startup(function(){
                             params: {
                                 'client': 'firefox',
                                 'ds': 'yt',
-                                'q': query,
-                                'userIp': '86.14.243.137'
+                                'q': query
                             }
                         }
                     );
@@ -57,7 +56,7 @@ Meteor.startup(function(){
                                 params: {
                                     'part': 'snippet',
                                     'q': query,
-                                    'key': 'AIzaSyARwdpTVqwlj4DZtYyymfqntrfqJL9DN-U'
+                                    'key': 'AIzaSyDdat-_my7hM7zsB5I3CcHcvBLsTHgreSc'
                                 }
                             }
                         );
