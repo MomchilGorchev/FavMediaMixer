@@ -28,7 +28,8 @@ Meteor.startup(function(){
                             params: {
                                 'client': 'firefox',
                                 'ds': 'yt',
-                                'q': query
+                                'q': query,
+                                'userIp': '86.14.243.137'
                             }
                         }
                     );
