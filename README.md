@@ -1,1 +1,3 @@
-# Started as a file uploader. Not really sure how its about to end.
+# Favourite Media Mixer
+
+### Combine the services that you are using every day
