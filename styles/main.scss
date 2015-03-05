@@ -168,6 +168,27 @@ a.navbar-brand{
   }
 }
 
+.github{
+  #github-result{
+    text-align: center;
+    tbody{
+      tr:nth-of-type(odd){
+        background: $nav-color;
+      }
+      td{
+        a{
+          color: $text-color;
+        }
+        .user-avatar{
+          width:40px;
+          margin-left: 25px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
 .rss.container{
   width: 90%;
   margin: 10px auto;
