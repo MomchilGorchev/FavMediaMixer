@@ -30,7 +30,9 @@ Template.rss.events({
                     };
 
                     Meteor.call('addToTempCollection', newItem, function(err, res){
-                        err ? console.log(err) : console.log(res);
+                        if(err){
+                            FlassMessages('Error occurred while handling the response');
+                        }
                     });
                 });
             }

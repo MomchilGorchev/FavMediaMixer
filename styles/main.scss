@@ -133,6 +133,7 @@ a.full-width{
   margin: 0 auto;
   ul{
     list-style-type: none;
+    padding-left: 0;
     li.video-wrapper{
       margin-bottom: 30px;
       padding: 0 7px 40px 7px;
@@ -154,7 +155,7 @@ a.full-width{
       .video-actions{
         position: absolute;
         bottom: 8px;
-        left: -15px;
+        left: 28px;
         .favourite{
           display: inline-block;
           margin-right: 4px;

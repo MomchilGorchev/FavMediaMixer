@@ -33,12 +33,12 @@ Template.github.events({
                             buffer.push(
                                 '<tr>' +
                                 '<td><a href="https://github.com/'+
-                                curr.actor.login +'">' +
+                                curr.actor.login +'" target="_blank">' +
                                 '<img src="https://avatars.githubusercontent.com/u/'+
                                 curr.actor.id +'" class="user-avatar" />'+ curr.actor.login +'</a>' +
                                 '</td>' +
                                 '<td>'+ curr.type +'</td>' +
-                                '<td><a href="https://github.com/'+ curr.repo.name +'">'+ curr.repo.name +'</a></td>' +
+                                '<td><a href="https://github.com/'+ curr.repo.name +'" target="_blank">'+ curr.repo.name +'</a></td>' +
                                 '<td>'+ curr.created_at +'</td>'+
                                 '</tr>'
                             );
@@ -52,7 +52,6 @@ Template.github.events({
                         $(noInfo).removeClass('hidden');
                         $(trigger).removeAttr('disabled').html('<i class="fa fa-cloud-download"></i> Get Feed');
                     }
-
                 });
             }
         }

@@ -1,10 +1,9 @@
 <template name="rssItem">
     <div class="rssItem">
-        <h3 class="rssItem-title"><a href="{{link}}">{{title}}</a></h3>
+        <h3 class="rssItem-title"><a href="{{link}}" target="_blank">{{title}}</a></h3>
         <h5 class="pubDate">Published on: <em>{{pubDate}}</em></h5>
         <img class="rssItem-thumb pull-right" src="{{thumb}}" alt="Item description" />
         <p class="rssItem-desc">
-
             {{description}}
         </p>
     </div>
