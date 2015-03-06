@@ -109,18 +109,20 @@ Meteor.startup(function(){
 
                     if(result){
                         // Get the last 5 items
-                        var lastItems = GithubRecent.find({}, {sort: {created: -1}, limit:5}).fetch(),
-                            existing = false,
+                        var lastItems = GithubRecent.find({query: query}).fetch(),
+                            existing = GithubRecent.find({}),
                             docs = lastItems.length;
                         // Iterate to check if the query exist
-                        for(var i = 0; i < docs; i++){
-                            if(lastItems[i].query === query){
-                                // Set flag
-                                existing = true
-                            }
-                        }
+                        //for(var i = 0; i < docs; i++){
+                        //    if(lastItems[i].query === query){
+                        //        // Set flag
+                        //        existing = true
+                        //    }
+                        //}
                         // If not add the new entry
-                        if(existing === false){
+                        console.log('The collection: '+ existing);
+                        console.log(lastItems);
+                        if(!lastItems.length){
                             GithubRecent.insert({
                                 query: query,
                                 created: Date.now()

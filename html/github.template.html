@@ -9,14 +9,17 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <span class="recent-label">Recent:</span>
+                <span class="recent-label">Recent:
+                    <!--<i class="badge">{{recentCount}}</i>-->
+                </span>
                 {{#each recentQueries}}
                     <span class="recent-query">{{query}}</span>
                 {{/each}}
             </div>
-            <a href="#" id="get-github-feed" class="btn btn-primary btn-lg">Get Feed</a>
+            <a href="#" id="get-github-feed" class="btn btn-primary btn-lg full-width"><i class="fa fa-cloud-download"></i> Get Feed</a>
         </div>
     </section>
+    <h3 class="no-info hidden">No information found for your query</h3>
     <div class="container github">
         <table id="github-result" class="table table-striped hidden">
             <thead>
@@ -24,7 +27,7 @@
                     <td><i class="fa fa-user"></i> WHO</td>
                     <td><i class="fa fa-question"></i> WHAT</td>
                     <td><i class="fa fa-book"></i> WHERE</td>
-                    <td><i class="fa fa-watch"></i> WHEN</td>
+                    <td><i class="fa fa-clock-o"></i> WHEN</td>
                 </tr>
             </thead>
             <tbody>

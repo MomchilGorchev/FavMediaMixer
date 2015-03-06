@@ -34,4 +34,7 @@ Template.github.helpers({
     recentQueries: function() {
         return GithubRecent.find({}, {sort: {created: -1}, limit: 5});
     }
+    //recentCount: function(){
+    //    return GithubRecent.find().count();
+    //}
 });
