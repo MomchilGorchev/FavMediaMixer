@@ -26,8 +26,12 @@ Template.rss.helpers({
 
 Template.profile.helpers({
     userInfo: function(){
-
         return [Meteor.user().profile.name, Meteor.user()._id];
+    }
+});
 
+Template.github.helpers({
+    recentQueries: function() {
+        return GithubRecent.find({}, {sort: {created: -1}, limit: 5});
     }
 });

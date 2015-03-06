@@ -5,6 +5,15 @@
     <section class="search-box">
         <div class="form-control-wrapper autocomp">
             <input type="text" class="github-user form-control search-field" placeholder="Github username"/>
+            <div id="recent" class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <span class="recent-label">Recent:</span>
+                {{#each recentQueries}}
+                    <span class="recent-query">{{query}}</span>
+                {{/each}}
+            </div>
             <a href="#" id="get-github-feed" class="btn btn-primary btn-lg">Get Feed</a>
         </div>
     </section>
@@ -15,6 +24,7 @@
                     <td><i class="fa fa-user"></i> WHO</td>
                     <td><i class="fa fa-question"></i> WHAT</td>
                     <td><i class="fa fa-book"></i> WHERE</td>
+                    <td><i class="fa fa-watch"></i> WHEN</td>
                 </tr>
             </thead>
             <tbody>

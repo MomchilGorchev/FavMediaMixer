@@ -94,12 +94,12 @@ Meteor.startup(function(){
         //},
 
         // GITHUB
-        getGithubFeed: function(user){
-            if(user){
+        getGithubFeed: function(query){
+            if(query){
                 try{
                     var result = HTTP.call(
                         'GET',
-                        'https://api.github.com/users/'+ user +'/events',
+                        'https://api.github.com/users/'+ query +'/events',
                         {
                             headers:{
                                 'User-Agent': 'FMM'
@@ -108,6 +108,28 @@ Meteor.startup(function(){
                     );
 
                     if(result){
+                        // Get the last 5 items
+                        var lastItems = GithubRecent.find({}, {sort: {created: -1}, limit:5}).fetch(),
+                            existing = false,
+                            docs = lastItems.length;
+                        // Iterate to check if the query exist
+                        for(var i = 0; i < docs; i++){
+                            if(lastItems[i].query === query){
+                                // Set flag
+                                existing = true
+                            }
+                        }
+                        // If not add the new entry
+                        if(existing === false){
+                            GithubRecent.insert({
+                                query: query,
+                                created: Date.now()
+                            });
+                        }
+                        else{
+                            // Implement db cleanup here
+                            console.log('Already exist');
+                        }
                         return result.content;
                     }
                 }

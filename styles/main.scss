@@ -168,6 +168,30 @@ a.navbar-brand{
   }
 }
 
+#recent.alert{
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 95%;
+  margin: 40px auto 30px auto;
+  height: 100px;
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.24);
+  .recent-label{
+    position: absolute;
+    top: -18px;
+    left: 9px;
+    color: rgb(153, 153, 153);
+  }
+  .recent-query{
+    background: black;
+    padding: 3px;
+    margin: 4px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+}
+
 .github{
   #github-result{
     text-align: center;

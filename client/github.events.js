@@ -5,12 +5,12 @@ Template.github.events({
     'click #get-github-feed': function(e, t){
         var trigger = e.currentTarget,
             container = t.find('#github-result'),
-            containerBody = $(container).find('tbody');
-            user = t.find('.github-user').value, buffer = [];
-        console.log(user);
+            containerBody = $(container).find('tbody'),
+            query = t.find('.github-user').value, buffer = [];
+        //console.log(user);
 
-        if(user){
-            Meteor.call('getGithubFeed', user, function(err, res){
+        if(query){
+            Meteor.call('getGithubFeed', query, function(err, res){
                 if(err) console.log(err);
 
                 res = $.parseJSON(res);
@@ -25,12 +25,14 @@ Template.github.events({
                                 '<img src="https://avatars.githubusercontent.com/u/'+
                                 curr.actor.id +'" class="user-avatar" />'+ curr.actor.login +'</a></td>' +
                             '<td>'+ curr.type +'</td>' +
-                            '<td>'+ curr.repo.name +'</td>' +
+                            '<td><a href="https://github.com/'+ curr.repo.name +'">'+ curr.repo.name +'</a></td>' +
+                            '<td>'+ curr.created_at +'</td>'+
                         '</tr>'
                     );
                 });
                 $(containerBody).html(buffer);
                 $(container).removeClass('hidden');
+
             });
         }
 
