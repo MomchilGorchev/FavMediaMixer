@@ -28,11 +28,12 @@ body{
   background: $action-color;
   box-shadow: $box-shadow;
   border-radius: 50%;
-  right: 20px;
-  bottom: 50px;
+  right: 50%;
+  margin-right: -25px;
+  bottom: 5px;
   cursor: pointer;
   i{
-    padding:12px 14px;
+    padding:3px 12px;
   }
 }
 #top-main-navbar.navbar{
@@ -250,6 +251,7 @@ footer{
   bottom: 0;
   width: 100%;
   padding: 4px 30px 0 30px;
+  box-shadow: $box-shadow;
   a{
     color: $bg-color;
     &:hover{

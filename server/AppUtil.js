@@ -4,6 +4,12 @@
 
 if(Meteor.isServer === true){
 
+    var TwitterSearch = new Twitter.SearchClient(
+        'ZMRm7HceWg9P1uIazWXitIOAI',
+        'POkwfpjmRMiiWEMsECVCAqX7R2SoCh26hrrK91nRAZOj3QZDa7',
+        '2301354211-72SHpOki6TffW0AnslYnQoVqK4DW1e1SHJS6I0W',
+        'xAIjyT7zZPZ7gf6DxcxbkxawOnwHiRcPGpp7Z99UZs8t0'
+    );
 
     console.log('FMM: Starting..');
     AppUtil = {

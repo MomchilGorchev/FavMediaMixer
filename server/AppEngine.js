@@ -190,6 +190,36 @@ Meteor.startup(function(){
                     return true;
                 }
             }
+        },
+
+        twSearchApi: function(query){
+            twitterSearch = new Twitter.SearchClient(
+                'ZMRm7HceWg9P1uIazWXitIOAI',
+                'POkwfpjmRMiiWEMsECVCAqX7R2SoCh26hrrK91nRAZOj3QZDa7',
+                '2301354211-72SHpOki6TffW0AnslYnQoVqK4DW1e1SHJS6I0W',
+                'xAIjyT7zZPZ7gf6DxcxbkxawOnwHiRcPGpp7Z99UZs8t0'
+            );
+            if(query){
+                function getTwitterFeed(req, callback){
+                    twitterSearch.search({'q': query}, function(err, res){
+                        if(err){
+                            console.log('Err:' +err);
+                            //twResult.result = err;
+
+                        } else if(res) {
+                            //twResult.result = res;
+                            console.log(res);
+                            //return res;
+                        }
+                    });
+                }
+
+                var wrappedCallback = Meteor.wrapAsync(getTwitterFeed);
+
+                return wrappedCallback({q: query});
+
+                //return twResult.result;
+            }
         }
 
     });

@@ -13,7 +13,7 @@ UserAccessController = RouteController.extend({
     //On before action hook to check if the user is logged in
     onBeforeAction: function(){
         if (!(Meteor.loggingIn() || Meteor.user())) {
-            this.render("login");
+            this.redirect("login");
         } else{
             // Subscriptions
             Meteor.subscribe('favourites');
