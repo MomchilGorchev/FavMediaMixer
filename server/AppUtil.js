@@ -5,7 +5,7 @@
 if(Meteor.isServer === true){
 
 
-    console.log('Im running');
+    console.log('FMM: Starting..');
     AppUtil = {
         gAuth: function(){
             // The client ID is obtained from the Google Developers Console
@@ -65,7 +65,6 @@ if(Meteor.isServer === true){
             function loadAPIClientInterfaces() {
                 gapi.client.load('youtube', 'v3', function() {
                     handleAPILoaded();
-
                 });
             }
             return true;

@@ -1,6 +1,7 @@
 /**
  * Created by momchillgorchev on 24/02/15.
  */
+console.log('FMM: Preparing collections...');
 
 Favourites = new Meteor.Collection('favourites');
 RssFeed = new Meteor.Collection('rssfeed');

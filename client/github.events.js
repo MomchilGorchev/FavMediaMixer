@@ -2,14 +2,21 @@
  * Created by momchillgorchev on 03/03/15.
  */
 Template.github.events({
-    'click #get-github-feed, keyup .github-user': function(e, t){
+    'click #get-github-feed, keyup .github-user, click .recent-query': function(e, t){
+        var query = null, eventTarget = $(e.currentTarget);
         // Handle Enter key press and click on submit
         if(e.keyCode === 13 || e.type === 'click'){
+            // If we click on the recent queries
+            if(eventTarget.hasClass('recent-query')){
+                query = eventTarget.text();
+            } else {
+                query = t.find('.github-user').value;
+            }
             var trigger = t.find('#get-github-feed'),
                 container = t.find('#github-result'),
                 containerBody = $(container).find('tbody'),
                 noInfo = t.find('.no-info'),
-                query = t.find('.github-user').value, buffer = [];
+                buffer = [];
             //console.log(user);
 
             if(query){
@@ -49,11 +56,7 @@ Template.github.events({
                 });
             }
         }
-    },
-
-    'click .recent-query': function(e, t){
-        var value = e.currentTarget.text();
-
-        console.log(value);
     }
+
+
 });
