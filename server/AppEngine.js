@@ -2,6 +2,8 @@
 
 Meteor.startup(function(){
 
+    Future = Npm.require('fibers/future');
+
     return Meteor.methods({
         addToFavourite: function(fav){
             if(fav){
@@ -193,6 +195,7 @@ Meteor.startup(function(){
         },
 
         twSearchApi: function(query){
+            var future = new Future();
             twitterSearch = new Twitter.SearchClient(
                 'ZMRm7HceWg9P1uIazWXitIOAI',
                 'POkwfpjmRMiiWEMsECVCAqX7R2SoCh26hrrK91nRAZOj3QZDa7',
@@ -200,27 +203,14 @@ Meteor.startup(function(){
                 'xAIjyT7zZPZ7gf6DxcxbkxawOnwHiRcPGpp7Z99UZs8t0'
             );
             if(query){
-                function getTwitterFeed(req, callback){
-                    twitterSearch.search({'q': query}, function(err, res){
-                        if(err){
-                            console.log('Err:' +err);
-                            //twResult.result = err;
+                twitterSearch.search({'q': query}, function(err, res){
+                    console.log(res);
 
-                        } else if(res) {
-                            //twResult.result = res;
-                            console.log(res);
-                            //return res;
-                        }
-                    });
-                }
+                    future['return'](res);
+                });
 
-                var wrappedCallback = Meteor.wrapAsync(getTwitterFeed);
-
-                return wrappedCallback({q: query});
-
-                //return twResult.result;
+                return future.wait();
             }
         }
-
     });
 });

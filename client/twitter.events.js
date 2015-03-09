@@ -8,7 +8,7 @@ Template.twitter.events({
                 if (err){
                     console.log('Err: '+ err.error);
                 }
-                 console.log('Res: '+ res);
+                 console.log('Res: '+ JSON.stringify(res));
              });
          }
      }
