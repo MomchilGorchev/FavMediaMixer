@@ -244,6 +244,44 @@ a.full-width{
     margin-right: 25px;
   }
 }
+
+#tweets-wrapper{
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto;
+  .tweet{
+    background: $text-color;
+    color: $black;
+    position: relative;
+    padding: 7px;
+    height:auto;
+    min-height: 160px;
+    margin: 15px;
+    border-radius: 4px;
+    .user-img{
+      float: left;
+      width: 60px;
+    }
+    .user-info{
+      float: right;
+      .user-screen-name{
+        font-size: 0.8em;
+        color: lighten($black, 20%);
+      }
+    }
+    .tweet-text{
+      margin-top: 20px;
+      clear:both;
+      font-size:1.15em;
+    }
+    .tweet-created{
+      position: absolute;
+      bottom: 5px;
+      color: lighten($black, 20%);
+    }
+  }
+}
+
 footer{
   background: $nav-color;
   height: 30px;

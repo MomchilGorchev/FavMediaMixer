@@ -5,6 +5,7 @@ Meteor.startup(function(){
     Future = Npm.require('fibers/future');
     Core = Assets.getText("tokens.json");
     Core = JSON.parse(Core);
+
     //console.log(Core.AppSecret.Twitter);
     return Meteor.methods({
         addToFavourite: function(fav){
@@ -60,7 +61,7 @@ Meteor.startup(function(){
                                 params: {
                                     'part': 'snippet',
                                     'q': query,
-                                    'key': 'AIzaSyDdat-_my7hM7zsB5I3CcHcvBLsTHgreSc'
+                                    'key': Core.AppSecret.Youtube.apikey
                                 }
                             }
                         );
