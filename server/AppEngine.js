@@ -3,7 +3,9 @@
 Meteor.startup(function(){
 
     Future = Npm.require('fibers/future');
-
+    Core = Assets.getText("tokens.json");
+    Core = JSON.parse(Core);
+    //console.log(Core.AppSecret.Twitter);
     return Meteor.methods({
         addToFavourite: function(fav){
             if(fav){
@@ -194,16 +196,16 @@ Meteor.startup(function(){
         twSearchApi: function(query){
             var future = new Future();
             var twitterSearch = new Twitter.SearchClient(
-                'ZMRm7HceWg9P1uIazWXitIOAI',
-                'POkwfpjmRMiiWEMsECVCAqX7R2SoCh26hrrK91nRAZOj3QZDa7',
-                '2301354211-72SHpOki6TffW0AnslYnQoVqK4DW1e1SHJS6I0W',
-                'xAIjyT7zZPZ7gf6DxcxbkxawOnwHiRcPGpp7Z99UZs8t0'
+                Core.AppSecret.Twitter.consumer_key,
+                Core.AppSecret.Twitter.consumer_secret,
+                Core.AppSecret.Twitter.access_token_key,
+                Core.AppSecret.Twitter.access_token_secret
             );
             var twitterStreamClient = new Twitter.StreamClient(
-                'ZMRm7HceWg9P1uIazWXitIOAI',
-                'POkwfpjmRMiiWEMsECVCAqX7R2SoCh26hrrK91nRAZOj3QZDa7',
-                '2301354211-72SHpOki6TffW0AnslYnQoVqK4DW1e1SHJS6I0W',
-                'xAIjyT7zZPZ7gf6DxcxbkxawOnwHiRcPGpp7Z99UZs8t0'
+                Core.AppSecret.Twitter.consumer_key,
+                Core.AppSecret.Twitter.consumer_secret,
+                Core.AppSecret.Twitter.access_token_key,
+                Core.AppSecret.Twitter.access_token_secret
             );
             if(query){
 
