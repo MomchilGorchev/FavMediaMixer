@@ -11,13 +11,19 @@ Router.configure({
 UserAccessController = RouteController.extend({
     //On before action hook to check if the user is logged in
     onBeforeAction: function(){
+        var currentRoute = Router.current().options.route._path;
         if (!(Meteor.loggingIn() || Meteor.user())) {
             this.redirect("login");
         } else{
             // Subscriptions
             Meteor.subscribe('favourites');
-            Meteor.subscribe('rssfeed');
-            Meteor.subscribe('githubrecent');
+            if(currentRoute === '/rss'){
+                Meteor.subscribe('rssfeed');
+            } else if(currentRoute === '/github'){
+                Meteor.subscribe('githubrecent');
+            } else if(currentRoute === '/twitter'){
+                Meteor.subscribe('tweets');
+            }
             // After IR > 1.* you need to use this.next()
             // for better use of connection middleware
             this.next();

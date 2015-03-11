@@ -10,6 +10,7 @@ GithubRecent = new Meteor.Collection('githubrecent', {
     size: 500000, // 500kb size
     max: 5        // Max amount of documents
 });
+TweetsTemp = new Meteor.Collection('tweets')
 
 console.log('FMM: Database -- OK');
 console.log('FMM: Starting server');
@@ -24,5 +25,8 @@ if(Meteor.isServer){
     });
     Meteor.publish('githubrecent', function(){
         return GithubRecent.find();
+    });
+    Meteor.publish('tweets', function(){
+        return TweetsTemp.find();
     });
 }
