@@ -103,12 +103,9 @@ Meteor.startup(function(){
                         'GET',
                         'https://api.github.com/users/'+ query +'/events',
                         {
-                            headers:{
-                                'User-Agent': 'FMM'
-                            }
+                            headers:{ 'User-Agent': 'FMM' }
                         }
                     );
-
                     if(result){
                         // Get the last 5 items
                         var lastItems = GithubRecent.find({}, {sort: {created: -1}, limit:5}).fetch(),
@@ -118,7 +115,7 @@ Meteor.startup(function(){
                         for(var i = 0; i < docs; i++){
                             if(lastItems[i].query === query){
                                 // Set flag
-                                existing = true
+                                existing = true;
                             }
                         }
                         // If not add the new entry
@@ -196,16 +193,22 @@ Meteor.startup(function(){
 
         twSearchApi: function(query){
             var future = new Future();
-            twitterSearch = new Twitter.SearchClient(
+            var twitterSearch = new Twitter.SearchClient(
+                'ZMRm7HceWg9P1uIazWXitIOAI',
+                'POkwfpjmRMiiWEMsECVCAqX7R2SoCh26hrrK91nRAZOj3QZDa7',
+                '2301354211-72SHpOki6TffW0AnslYnQoVqK4DW1e1SHJS6I0W',
+                'xAIjyT7zZPZ7gf6DxcxbkxawOnwHiRcPGpp7Z99UZs8t0'
+            );
+            var twitterStreamClient = new Twitter.StreamClient(
                 'ZMRm7HceWg9P1uIazWXitIOAI',
                 'POkwfpjmRMiiWEMsECVCAqX7R2SoCh26hrrK91nRAZOj3QZDa7',
                 '2301354211-72SHpOki6TffW0AnslYnQoVqK4DW1e1SHJS6I0W',
                 'xAIjyT7zZPZ7gf6DxcxbkxawOnwHiRcPGpp7Z99UZs8t0'
             );
             if(query){
+
                 twitterSearch.search({'q': query}, function(err, res){
                     console.log(res);
-
                     future['return'](res);
                 });
 

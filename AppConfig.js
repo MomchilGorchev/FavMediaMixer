@@ -1,8 +1,8 @@
 /**
  * Created by momchillgorchev on 24/02/15.
  */
-console.log('FMM: Preparing collections...');
-
+console.log('FMM: Preparing Database...');
+// Define Collections
 Favourites = new Meteor.Collection('favourites');
 RssFeed = new Meteor.Collection('rssfeed');
 GithubRecent = new Meteor.Collection('githubrecent', {
@@ -11,7 +11,11 @@ GithubRecent = new Meteor.Collection('githubrecent', {
     max: 5        // Max amount of documents
 });
 
+console.log('FMM: Database -- OK');
+console.log('FMM: Starting server');
+
 if(Meteor.isServer){
+    // Publish all collections
     Meteor.publish('favourites', function(){
         return Favourites.find();
     });

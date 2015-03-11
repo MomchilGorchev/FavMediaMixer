@@ -1,7 +1,6 @@
 /**
  * Created by momchillgorchev on 19/02/15.
  */
-console.log('')
 
 Router.configure({
     layoutTemplate: "mainLayout"
@@ -47,11 +46,6 @@ Router.map(function () {
         controller: UserAccessController
     });
 
-    //this.route('twi', {
-    //    path: '/drive',
-    //    controller: UserAccessController
-    //});
-
     this.route('github', {
         path: '/github',
         controller: UserAccessController
@@ -78,4 +72,4 @@ Router.map(function () {
 
 });
 
-
+console.log('FMM: Server -- OK');
