@@ -1,7 +1,7 @@
 Template.twitter.events({
      'click #get-tw-feed': function(e, t){
          var trigger = $(e.currentTarget),
-             query = t.find('.tw-search').value;
+             query = t.find('.tw-search').value, tweets = [];
          // Validate
          if(query && query.length){
              // Call server
@@ -11,10 +11,19 @@ Template.twitter.events({
                     FlashMessages.sendError('Error: '+ err.error);
                 } else {
                     // Else handle the result
-                    //console.log('Response: '+ res);
                     $.each(res.statuses, function(k, v){
-                        console.log(this);
-                    })
+                        // Display the API object for each tweet
+                        // console.log(this);
+                        var _this = this,
+                            twData = {
+                                text: _this.text,
+                                user: _this.user,
+                                created: _this.created_at
+                            };
+                        tweets.push(twData);
+                    });
+                    // Object with the info we need
+                    console.log(tweets);
                 }
              });
          }
