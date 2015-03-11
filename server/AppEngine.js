@@ -182,6 +182,8 @@ Meteor.startup(function(){
                 });
                 if(result){
                     return true;
+                } else {
+                    return false;
                 }
             }
         },
@@ -191,6 +193,8 @@ Meteor.startup(function(){
                 if(global[collection].remove({})){
                     return true;
                 }
+            } else {
+                return false;
             }
         },
 
@@ -216,7 +220,27 @@ Meteor.startup(function(){
                 });
 
                 return future.wait();
+            } else {
+                return false;
             }
+        },
+
+        addTweets: function(tweets){
+            if(tweets && tweets.length){
+                var tweetsAmount = tweets.length;
+                for(var i = 0; i < tweetsAmount; i++) {
+                    TweetsTemp.insert({
+                        userId: tweets[i].userId,
+                        text: tweets[i].text,
+                        user: tweets[i].user,
+                        created: tweets[i].created
+                    });
+                }
+                return TweetsTemp.find().fetch();
+            } else {
+                return false;
+            }
+
         }
     });
 });

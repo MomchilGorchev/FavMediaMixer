@@ -38,3 +38,9 @@ Template.github.helpers({
     //    return GithubRecent.find().count();
     //}
 });
+
+Template.twitter.helpers({
+   tweetsObj: function(){
+       return TweetsTemp.find();
+   }
+});

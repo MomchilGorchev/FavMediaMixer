@@ -7,7 +7,9 @@
         </div>
     </section>
     <section id="tweets-wrapper">
-
+        {{#each tweetsObj}}
+            {{> tweet}}
+        {{/each}}
     </section>
 </template>
 

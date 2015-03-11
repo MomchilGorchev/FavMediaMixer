@@ -5,11 +5,18 @@ Template.twitter.events({
              query = t.find('.tw-search').value, tweets = [];
          // Validate
          if(query && query.length){
+             $(trigger).attr('disabled', true).html('<i class="fa fa-spinner fa-spin"></i>');
              // Call server
+             Meteor.call('clearTempCollection', 'TweetsTemp', function(err, res){
+                 if(err){
+                     console.log(err);
+                 }
+             });
              Meteor.call('twSearchApi', query, function(err, res){
                 if (err){
                     // If error display error message
                     FlashMessages.sendError('Error: '+ err.error);
+                    $(trigger).removeAttr('disabled').html('<i class="fa fa-cloud-download"></i> Get Feed');
                 } else {
                     // Else handle the result
                     $.each(res.statuses, function(k, v){
@@ -17,26 +24,20 @@ Template.twitter.events({
                         // console.log(this);
                         var _this = this,
                             twData = {
+                                userId: Meteor.user()._id,
                                 text: _this.text,
                                 user: _this.user,
                                 created: _this.created_at
                             };
-                        var twHtml =
-                            '<div class="tweet">' +
-                                '<img class="user-img" src="'+ twData.user.profile_image_url +'" />'+
-                                '<div class="user-info">' +
-                                    '<span class="user-name">'+ twData.user.name +'</span><br />'+
-                                    '<span class="user-screen-name">@'+ twData.user.screen_name +'</span>'+
-                                '</div>'+
-                                '<p class="tweet-text">'+ twData.text +'</p>'+
-                                '<span class="tweet-created">'+ twData.created +'</span>'+
-                            '</div>';
-
-                        tweets.push(twHtml);
+                        tweets.push(twData);
                     });
-                    // Object with the info we need
-                    //console.log(tweets);
-                    $(wrapper).html(tweets);
+                    Meteor.call('addTweets', tweets, function(err, res){
+                       if(err){
+                           FlashMessages.sendError('<i class="fa fa-warning"></i> Error occurred while proccessing your request. <br />Please try again');
+                       } else {
+                           $(trigger).removeAttr('disabled').html('<i class="fa fa-cloud-download"></i> Get Feed');
+                       }
+                    });
                 }
              });
          }

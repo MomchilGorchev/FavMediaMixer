@@ -1,0 +1,11 @@
+<template name="tweet">
+    <div class="tweet">
+        <img class="user-img" src="{{user.profile_image_url}}" />
+        <div class="user-info">
+            <span class="user-name">{{user.name}}</span><br />
+            <span class="user-screen-name">@{{user.screen_name}}</span>
+        </div>
+        <p class="tweet-text">{{text}}</p>
+        <span class="tweet-created">{{created}}</span>
+    </div>
+</template>
