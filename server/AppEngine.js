@@ -58,6 +58,7 @@ Meteor.startup(function(){
                             'GET',
                             'https://www.googleapis.com/youtube/v3/search',
                             {
+                                proxy: process.env.QUOTAGUARDSTATIC_URL,
                                 params: {
                                     'part': 'snippet',
                                     'q': query,
