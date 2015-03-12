@@ -230,6 +230,7 @@ Meteor.startup(function(){
                 var tweetsAmount = tweets.length;
                 for(var i = 0; i < tweetsAmount; i++) {
                     TweetsTemp.insert({
+                        tweetId: tweets[i].tweetId,
                         userId: tweets[i].userId,
                         text: tweets[i].text,
                         user: tweets[i].user,

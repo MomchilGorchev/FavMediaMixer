@@ -40,7 +40,16 @@ Template.github.helpers({
 });
 
 Template.twitter.helpers({
-   tweetsObj: function(){
-       return TweetsTemp.find();
-   }
+    tweetsObj: function(){
+        return TweetsTemp.find();
+    }
+});
+
+Template.tweet.helpers({
+    urlify: function(text) {
+        var urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function(url) {
+            return '<a href="' + url + '">' + url + '</a>';
+        });
+    }
 });

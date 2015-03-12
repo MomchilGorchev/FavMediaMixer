@@ -5,7 +5,8 @@
             <span class="user-name">{{user.name}}</span><br />
             <span class="user-screen-name">@{{user.screen_name}}</span>
         </div>
-        <p class="tweet-text">{{text}}</p>
+        <p class="tweet-text">{{{urlify text}}}</p>
         <span class="tweet-created">{{created}}</span>
+        <span class="pull-right hidden">{{tweetId}}</span>
     </div>
 </template>

@@ -1,5 +1,6 @@
 Template.twitter.events({
      'click #get-tw-feed, keyup .tw-search': function(e, t){
+
          var query = null,  trigger = $(e.currentTarget),
              wrapper = t.find('#tweets-wrapper'), tweets = [];
          if(e.keyCode === 13 || e.type === 'click'){
@@ -22,12 +23,14 @@ Template.twitter.events({
                          FlashMessages.sendError('Error: '+ err.error);
                          $(trigger).removeAttr('disabled').html('<i class="fa fa-cloud-download"></i> Get Feed');
                      } else {
+                         console.log(res.statuses[1]);
                          // Else handle the result
                          $.each(res.statuses, function(k, v){
                              // Display the API object for each tweet
                              // console.log(this);
                              var _this = this,
                                  twData = {
+                                     tweetId: _this.id,
                                      userId: Meteor.user()._id,
                                      text: _this.text,
                                      user: _this.user,
@@ -46,7 +49,5 @@ Template.twitter.events({
                  });
              }
          }
-
-
      }
 });

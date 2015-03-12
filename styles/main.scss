@@ -273,6 +273,10 @@ a.full-width{
       margin-top: 20px;
       clear:both;
       font-size:1.15em;
+      background: rgb(221, 217, 228);
+      padding: 10px;
+      color: darkslategray;
+      border-radius: 4px;
     }
     .tweet-created{
       position: absolute;
@@ -298,6 +302,7 @@ footer{
   }
   .footer-social{
     font-size: 1.8em;
+    text-align:right;
     li{
       display: inline-block;
       margin-right: 15px;
