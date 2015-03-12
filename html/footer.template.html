@@ -2,10 +2,42 @@
     <div class="footer-inner">
         <p class="pull-right">FMM - Favourite Media Mixer. Build by <a href="https://github.com/momchilgorchev">Momchil Gorchev</a></p>
         <p class="pull-left">Found a bug? Please <a href="mailto:momchil.gorchev@gmail.com">report</a></p>
-        <div class="create-new">
-            <a class="create-new-link">
-                <i class="fa fa-angle-up fa-3x"></i>
-            </a>
+        <div class="menu">
+            <div class="menu-wrapper">
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <button class="menu-item-button">
+                            <i class="menu-item-icon icon fa fa-share"></i>
+                        </button>
+                        <div class="menu-item-bounce"></div>
+                    </li>
+                    <li class="menu-item">
+                        <button class="menu-item-button">
+                            <i class="menu-item-icon icon fa fa-file"></i>
+                        </button>
+                        <div class="menu-item-bounce"></div>
+                    </li>
+                    <li class="menu-item">
+                        <button class="menu-item-button">
+                            <i class="menu-item-icon icon fa fa-trash"></i>
+                        </button>
+                        <div class="menu-item-bounce"></div>
+                    </li>
+                </ul>
+                <button class="menu-toggle-button">
+                    <i class="fa fa-plus menu-toggle-icon"></i>
+                </button>
+            </div>
         </div><!-- /.navbar-collapse -->
+
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+                </filter>
+            </defs>
+        </svg>
     </div>
 </template>
