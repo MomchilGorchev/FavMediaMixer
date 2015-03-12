@@ -296,6 +296,13 @@ footer{
       color: $text-color;
     }
   }
+  .footer-social{
+    font-size: 1.8em;
+    li{
+      display: inline-block;
+      margin-right: 15px;
+    }
+  }
 }
 
 
