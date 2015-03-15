@@ -1,24 +1,29 @@
 <template name="youtube">
-    <div class="app-body">
-        <h1>Find your favourite media</h1>
-        <section class="autocomp-form search-box">
-            <form class="form-control">
-                <div class="form-control-wrapper autocomp">
-                    <input type="text" id="autocomp-field" class="form-control search-field" placeholder="Just start typing"/>
-                </div>
-                <div class="result-box" id="resultBox">
-                </div>
-            </form>
-        </section>
-        <section id="playlist">
-            <!--https://www.youtube.com/embed/kt0g4dWxEBo-->
-            <!--<iframe width="500" height="350" src="https://www.youtube.com/results?search_query=a" frameborder="0"></iframe>-->
-        </section>
-        <div class="overlay overlay-scale">
-            <button type="button" class="overlay-close">Close</button>
-            <div class="content">
+    <div class="col-lg-6 col-sm-6">
+        <div class="app-body">
+            <h1>Find your favourite media</h1>
+            <section class="autocomp-form search-box">
+                <form class="form-control">
+                    <div class="form-control-wrapper autocomp">
+                        <input type="text" id="autocomp-field" class="form-control search-field" placeholder="Just start typing"/>
+                    </div>
+                    <div class="result-box" id="resultBox">
+                    </div>
+                </form>
+            </section>
+            <section id="playlist">
+                <!--https://www.youtube.com/embed/kt0g4dWxEBo-->
+                <!--<iframe width="500" height="350" src="https://www.youtube.com/results?search_query=a" frameborder="0"></iframe>-->
+            </section>
+            <div class="overlay overlay-scale">
+                <button type="button" class="overlay-close">Close</button>
+                <div class="content">
 
+                </div>
             </div>
         </div>
+    </div>
+    <div class="col-lg-6 col-sm-6">
+        {{> favourites}}
     </div>
 </template>
