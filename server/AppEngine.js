@@ -1,12 +1,21 @@
-
+/**
+ * Server start
+ * Methods file
+ */
 
 Meteor.startup(function(){
 
     Future = Npm.require('fibers/future');
-    Core = Assets.getText("tokens.json");
-    Core = JSON.parse(Core);
 
-    //console.log(Core.AppSecret.Twitter);
+    // Get keys from file
+    var AppKeys = {
+        keys: JSON.parse(Assets.getText("tokens.json")),
+        getKey: function(param){
+            return this.keys[param].apikey
+        }
+    };
+
+    //console.log(AppKeys.keys.Twitter);
     return Meteor.methods({
         addToFavourite: function(fav){
             if(fav){
@@ -62,7 +71,7 @@ Meteor.startup(function(){
                                 params: {
                                     'part': 'snippet',
                                     'q': query,
-                                    'key': Core.AppSecret.Youtube.apikey
+                                    'key': AppKeys.getKey('Youtube')
                                 }
                             }
                         );
@@ -172,21 +181,25 @@ Meteor.startup(function(){
             }
         },
 
-        addToTempCollection: function(item){
-            if(item){
-                var result = RssFeed.insert({
-                    title: item.title,
-                    description: item.description,
-                    link: item.link,
-                    pubDate: item.pubDate,
-                    thumb: item.thumb
-                });
-                if(result){
-                    return true;
-                } else {
-                    return false;
+        addRss: function(items, clear, collection){
+            if(clear === true){
+                Meteor.call('clearTempCollection', collection);
+            }
+            var i, itemsLength = items.length, result = true;
+            for(i = 0; i < itemsLength; i++){
+                var item = items[i],
+                    execute = RssFeed.insert({
+                        title: item.title,
+                        description: item.description,
+                        link: item.link,
+                        pubDate: item.pubDate,
+                        thumb: item.thumb
+                    });
+                if(!execute){
+                    result = false;
                 }
             }
+            return result;
         },
 
         clearTempCollection: function(collection){
@@ -199,19 +212,24 @@ Meteor.startup(function(){
             }
         },
 
-        twSearchApi: function(query){
+        twSearchApi: function(query, clear, collection){
+
+            if(clear === true){
+                Meteor.call('clearTempCollection', collection);
+            }
+
             var future = new Future();
             var twitterSearch = new Twitter.SearchClient(
-                Core.AppSecret.Twitter.consumer_key,
-                Core.AppSecret.Twitter.consumer_secret,
-                Core.AppSecret.Twitter.access_token_key,
-                Core.AppSecret.Twitter.access_token_secret
+                AppKeys.keys.Twitter.consumer_key,
+                AppKeys.keys.Twitter.consumer_secret,
+                AppKeys.keys.Twitter.access_token_key,
+                AppKeys.keys.Twitter.access_token_secret
             );
             var twitterStreamClient = new Twitter.StreamClient(
-                Core.AppSecret.Twitter.consumer_key,
-                Core.AppSecret.Twitter.consumer_secret,
-                Core.AppSecret.Twitter.access_token_key,
-                Core.AppSecret.Twitter.access_token_secret
+                AppKeys.keys.Twitter.consumer_key,
+                AppKeys.keys.Twitter.consumer_secret,
+                AppKeys.keys.Twitter.access_token_key,
+                AppKeys.keys.Twitter.access_token_secret
             );
             if(query){
 
@@ -242,7 +260,6 @@ Meteor.startup(function(){
             } else {
                 return false;
             }
-
         }
     });
 });

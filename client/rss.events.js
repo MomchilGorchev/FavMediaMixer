@@ -1,18 +1,13 @@
 Template.rss.events({
     'change #rss-title': function(e, t){
         var filter = e.currentTarget,
-            newItem = {};
+            newItem = {}, items = [];
 
 
         Meteor.call('getRssFeed', filter.value, function(err, res){
             if(err){
                 console.log(err);
             } else {
-                Meteor.call('clearTempCollection', 'RssFeed', function(err, res){
-                    if(err){
-                        console.log(err);
-                    }
-                });
                 var xmlDoc = $.parseXML(res),
                     xml = $(xmlDoc);
                 xml.find('item').each(function(){
@@ -28,12 +23,12 @@ Template.rss.events({
                         'pubDate': $(content).find('pubDate').text(),
                         'thumb': $(content).find('thumbnail').attr('url')
                     };
-
-                    Meteor.call('addToTempCollection', newItem, function(err, res){
-                        if(err){
-                            FlassMessages('Error occurred while handling the response');
-                        }
-                    });
+                    items.push(newItem);
+                });
+                Meteor.call('addRss', items, true, 'RssFeed', function(err, res){
+                    if(err){
+                        FlassMessages('Error occurred while handling the response');
+                    }
                 });
             }
         });
