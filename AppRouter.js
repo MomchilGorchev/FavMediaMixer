@@ -78,4 +78,4 @@ Router.map(function () {
 
 });
 
-console.log('FMM: Server -- OK');
+console.log('FMM: Route map initiated - OK');

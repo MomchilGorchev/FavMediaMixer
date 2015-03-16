@@ -5,6 +5,7 @@
 
 Meteor.startup(function(){
 
+    // Need this to be able to return async
     Future = Npm.require('fibers/future');
 
     // Get keys from file
@@ -17,6 +18,12 @@ Meteor.startup(function(){
 
     //console.log(AppKeys.keys.Twitter);
     return Meteor.methods({
+
+        /**
+         * Youtube add-to-favourite logic
+         * @param fav - the item to be added
+         * @returns {boolean}
+         */
         addToFavourite: function(fav){
             if(fav){
                 var result = Favourites.insert({
@@ -31,8 +38,9 @@ Meteor.startup(function(){
                 return true;
             }
         },
-
+        // Call Auto complete API
         externalCall: function(query){
+            // Could include dynamic call parameters
             if(query){
                 try{
                     var result = HTTP.call(
@@ -56,9 +64,8 @@ Meteor.startup(function(){
                 }
             }
         },
-
         // This call requires authentication
-
+        // Calls the Youtube API
         getYtList: function(query){
             if(AppUtil.gAuth() === true) {
                 if (query) {
@@ -108,7 +115,11 @@ Meteor.startup(function(){
         //    //}
         //},
 
-        // GITHUB
+        /**
+         * Github API call and add to "Recent" collection
+         * @param query - github username or group to look for
+         * @returns {*}
+         */
         getGithubFeed: function(query){
             if(query){
                 try{
@@ -139,7 +150,7 @@ Meteor.startup(function(){
                             });
                         }
                         else{
-                            // Implement db cleanup here
+                            // TODO Implement db cleanup here
                             console.log('Already exist');
                         }
                         return result.content;
@@ -152,6 +163,12 @@ Meteor.startup(function(){
             }
         },
 
+        /**
+         * BBC RSS Feed metgos
+         * @param flag - The topic to be pulled
+         * @returns {*}
+         */
+        //TODO merge addRss method inside this one e.g with no loopback to the frontend
         getRssFeed: function(flag){
             if(flag){
                 if(flag !== 'default'){
@@ -181,6 +198,7 @@ Meteor.startup(function(){
             }
         },
 
+        // See the TODO above
         addRss: function(items, clear, collection){
             if(clear === true){
                 Meteor.call('clearTempCollection', collection);
@@ -202,6 +220,11 @@ Meteor.startup(function(){
             return result;
         },
 
+        /**
+         * Utility Clear Collection method
+         * @param collection - the collection to be cleared
+         * @returns {boolean}
+         */
         clearTempCollection: function(collection){
             if(global[collection].find().count() > 0){
                 if(global[collection].remove({})){
@@ -212,6 +235,13 @@ Meteor.startup(function(){
             }
         },
 
+        /**
+         * Twitter API calls and temp collection handling
+         * @param query - the string param for the call
+         * @param clear - if true erase temp collection first
+         * @param collection - name of the temp collection
+         * @returns {*} - return async
+         */
         twSearchApi: function(query, clear, collection){
 
             if(clear === true){
@@ -219,6 +249,7 @@ Meteor.startup(function(){
             }
 
             var future = new Future();
+            //TODO return keys with method
             var twitterSearch = new Twitter.SearchClient(
                 AppKeys.keys.Twitter.consumer_key,
                 AppKeys.keys.Twitter.consumer_secret,
@@ -243,7 +274,7 @@ Meteor.startup(function(){
                 return false;
             }
         },
-
+        // Maybe merge with the method above
         addTweets: function(tweets){
             if(tweets && tweets.length){
                 var tweetsAmount = tweets.length;
