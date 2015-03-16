@@ -1,6 +1,6 @@
 ## Favourite Media Mixer v1.0
 
-### Combine some of the services that you are using every day.
+### Combine some cool APIs together.
 - Youtube
 - Twitter
 - Github
