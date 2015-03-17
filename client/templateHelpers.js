@@ -21,6 +21,10 @@ Template.rss.helpers({
 
     headlinesCount: function(){
         return RssFeed.find().count();
+    },
+
+    lastTopic: function(){
+        return LastRss.find({}, {sort: {created:-1}}).limit(1);
     }
 });
 

@@ -66,6 +66,8 @@ oauth1@1.1.3
 oauth2@1.1.2
 observe-sequence@1.0.4
 ordered-dict@1.0.2
+peerlibrary:blocking@0.5.2
+peerlibrary:xml2js@0.4.5_1
 random@1.0.2
 reactive-dict@1.0.5
 reactive-var@1.0.4

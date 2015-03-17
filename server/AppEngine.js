@@ -166,10 +166,11 @@ Meteor.startup(function(){
         /**
          * BBC RSS Feed metgos
          * @param flag - The topic to be pulled
+         * @param clear - boolen to indicate if collection clear is needed
+         * @param collection - collection to be cleared
          * @returns {*}
          */
-        //TODO merge addRss method inside this one e.g with no loopback to the frontend
-        getRssFeed: function(flag){
+        getRssFeed: function(flag, clear, collection){
             if(flag){
                 if(flag !== 'default'){
                     var url = '';
@@ -178,10 +179,40 @@ Meteor.startup(function(){
                     } else {
                         url = 'http://feeds.bbci.co.uk/news/'+ flag +'/rss.xml';
                     }
+                    if(clear === true){
+                        Meteor.call('clearTempCollection', collection);
+                    }
                     try {
                         var result = HTTP.call('GET', url);
                         if(result.statusCode == 200 && result.content){
-                            return result.content;
+                            var parser = new xml2js.Parser();
+                            parser.parseString(result.content, function(err, res){
+                                var items = res.rss.channel[0].item, length = items.length, i = null, insert = true;
+                                for(i = 0; i < length; i++){
+
+                                    var current = items[i],
+                                    execute = RssFeed.insert({
+                                        title: current.title[0],
+                                        description: current.description[0],
+                                        link: current.link[0],
+                                        pubDate: current.pubDate[0],
+                                        thumb: current['media:thumbnail'][1]['$'].url
+                                    });
+                                    if(!execute){
+                                        insert = false;
+                                    }
+                                }
+                                if(insert){
+                                    console.log(flag);
+                                    LastRss.insert({
+                                        lastTopic: flag,
+                                        created: Date.now()
+                                    });
+                                    return true;
+                                }
+                            });
+
+                            //return result.content;
                         } else {
                             return 'Error response: ' + result.statusCode;
                         }
@@ -196,28 +227,6 @@ Meteor.startup(function(){
             } else {
                 return 'Parameters required!'
             }
-        },
-
-        // See the TODO above
-        addRss: function(items, clear, collection){
-            if(clear === true){
-                Meteor.call('clearTempCollection', collection);
-            }
-            var i, itemsLength = items.length, result = true;
-            for(i = 0; i < itemsLength; i++){
-                var item = items[i],
-                    execute = RssFeed.insert({
-                        title: item.title,
-                        description: item.description,
-                        link: item.link,
-                        pubDate: item.pubDate,
-                        thumb: item.thumb
-                    });
-                if(!execute){
-                    result = false;
-                }
-            }
-            return result;
         },
 
         /**

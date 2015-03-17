@@ -19,6 +19,7 @@ UserAccessController = RouteController.extend({
             Meteor.subscribe('favourites');
             if(currentRoute === '/rss'){
                 Meteor.subscribe('rssfeed');
+                Meteor.subscribe('lastrss');
             } else if(currentRoute === '/github'){
                 Meteor.subscribe('githubrecent');
             } else if(currentRoute === '/twitter'){
@@ -78,4 +79,4 @@ Router.map(function () {
 
 });
 
-console.log('FMM: Route map initiated - OK');
+console.log('FMM: Route map initiated -- OK');

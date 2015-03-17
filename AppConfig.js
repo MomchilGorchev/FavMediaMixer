@@ -5,6 +5,7 @@ console.log('FMM: Preparing Database...');
 // Define Collections
 Favourites = new Meteor.Collection('favourites');
 RssFeed = new Meteor.Collection('rssfeed');
+LastRss = new Meteor.Collection('lastrss');
 GithubRecent = new Meteor.Collection('githubrecent', {
     capped: true,
     size: 500000, // 500kb size
@@ -22,6 +23,9 @@ if(Meteor.isServer){
     });
     Meteor.publish('rssfeed', function(){
         return RssFeed.find();
+    });
+    Meteor.publish('lastrss', function(){
+        return LastRss.find();
     });
     Meteor.publish('githubrecent', function(){
         return GithubRecent.find();
