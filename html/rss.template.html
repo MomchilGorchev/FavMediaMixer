@@ -16,7 +16,7 @@
             <option value="entertainment_and_arts">Entertainment and Arts</option>
         </select>
 
-        <span class="headlines pull-right"><i class="fa fa-newspaper-o"></i> {{lastTopic.lastTopic}} : {{headlinesCount}}</span>
+        <span class="headlines pull-right"><i class="fa fa-newspaper-o"></i> {{#each lastRssTopic}} {{lastTopic}} {{/each}} : {{headlinesCount}}</span>
         <div class="rss-display">
             {{#each rssItems}}
                 {{> rssItem}}
