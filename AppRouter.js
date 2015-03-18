@@ -3,8 +3,8 @@
  */
 
 Router.configure({
-    layoutTemplate: "mainLayout"
-    //loadingTemplate: "loading",
+    layoutTemplate: "mainLayout",
+    loadingTemplate: "loading",
     //notFoundTemplate: "missing"
 });
 
@@ -28,6 +28,19 @@ UserAccessController = RouteController.extend({
             // After IR > 1.* you need to use this.next()
             // for better use of connection middleware
             this.next();
+        }
+    },
+    waitOn: function(){
+        var currentRoute = Router.current().options.route._path;
+        // Subscriptions
+        Meteor.subscribe('favourites');
+        if(currentRoute === '/rss'){
+            Meteor.subscribe('rssfeed');
+            Meteor.subscribe('lastrss');
+        } else if(currentRoute === '/github'){
+            Meteor.subscribe('githubrecent');
+        } else if(currentRoute === '/twitter'){
+            Meteor.subscribe('tweets');
         }
     }
 });

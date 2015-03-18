@@ -164,75 +164,92 @@ Meteor.startup(function(){
         },
 
         /**
-         * BBC RSS Feed metgos
+         * BBC RSS Feed methods. Fetch from server and add iteratively to collection.
+         * Clears the collection by default.
          * @param flag - The topic to be pulled
          * @param clear - boolen to indicate if collection clear is needed
          * @param collection - collection to be cleared
          * @returns {*}
          */
         getRssFeed: function(flag, clear, collection){
+            // Check the input
             if(flag){
                 if(flag !== 'default'){
                     var url = '';
+                    // Different url based on the requested topic
                     if(flag === 'top_stories'){
                         url = 'http://feeds.bbci.co.uk/news/rss.xml';
                     } else {
                         url = 'http://feeds.bbci.co.uk/news/'+ flag +'/rss.xml';
                     }
+                    // TRUE by default e.g. erase the collection
                     if(clear === true){
                         Meteor.call('clearTempCollection', collection);
                     }
+                    // Make call
                     try {
                         var result = HTTP.call('GET', url);
+                        // If call is successful
                         if(result.statusCode == 200 && result.content){
+                            // Initiate parser
                             var parser = new xml2js.Parser();
+                            // And parse the xml response into JS object
                             parser.parseString(result.content, function(err, res){
-                                var items = res.rss.channel[0].item, length = items.length, i = null, insert = true;
+                                // Vars cache and buffers
+                                var items = res.rss.channel[0].item, length = items.length,
+                                    i = null, insert = true;
+                                // Iterate over every item
                                 for(i = 0; i < length; i++){
-
+                                    // Cache the currently iterated item
                                     var current = items[i],
-                                    execute = RssFeed.insert({
-                                        title: current.title[0],
-                                        description: current.description[0],
-                                        link: current.link[0],
-                                        pubDate: current.pubDate[0],
-                                        thumb: current['media:thumbnail'][1]['$'].url
-                                    });
+                                        // And the thumbnail
+                                        thumb = current['media:thumbnail'][1]['$'].url || current['media:thumbnail'][0]['$'].url,
+                                        // Insert into DB
+                                        execute = RssFeed.insert({
+                                            title: current.title[0],
+                                            description: current.description[0],
+                                            link: current.link[0],
+                                            pubDate: current.pubDate[0],
+                                            thumb: thumb
+                                        });
+                                    // Check operation
                                     if(!execute){
                                         insert = false;
                                     }
                                 }
+                                // If all good
                                 if(insert){
-                                    console.log(flag);
+                                    // Insert the topic into collection
                                     LastRss.insert({
                                         lastTopic: flag,
                                         created: Date.now()
                                     });
+                                    // End
                                     return true;
                                 }
                             });
-
-                            //return result.content;
+                        // Not a successful call
                         } else {
                             return 'Error response: ' + result.statusCode;
                         }
                     }
+                    // Not able to make HTTP call
                     catch(e){
-                        console.log(e);
-                        return false;
+                        throw new Meteor.Error(500, e.errorCode);
                     }
+                // Not a topic specified
                 } else {
-                    return 'Please choose topic';
+                    throw new Meteor.Error(500, 'Please choose topic');
                 }
+            // Empty function call?!
             } else {
-                return 'Parameters required!'
+                throw new Meteor.Error(500, 'Parameters required!');
             }
         },
 
         /**
          * Utility Clear Collection method
          * @param collection - the collection to be cleared
-         * @returns {boolean}
          */
         clearTempCollection: function(collection){
             if(global[collection].find().count() > 0){
@@ -240,7 +257,7 @@ Meteor.startup(function(){
                     return true;
                 }
             } else {
-                return false;
+                throw new Meteor.Error(500, 'Cannot find collection [ %i ] - Aborting..', collection);
             }
         },
 

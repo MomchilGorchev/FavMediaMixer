@@ -4,7 +4,7 @@ Template.rss.events({
         console.log(filter.value);
         Meteor.call('getRssFeed', filter.value, true, 'RssFeed', function(err, res){
             if(err){
-                console.log(err);
+                FlashMessages.sendError('<i class="fa fa-warning"></i> Error occurred: ' + err);
             } else {
                 console.log('Done!');
             }

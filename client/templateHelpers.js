@@ -53,13 +53,13 @@ Template.tweet.helpers({
     urlify: function(text) {
         var urlRegex = /(https?:\/\/[^\s]+)/g,
             hashTagRegex = /(#[a-z0-9][a-z0-9\-_]*)/ig,
-            usernameRegex = /(^|[^@\w])@(\w{1,15})\b/g;
+            usernameRegex = /(@[a-z0-9][a-z0-9\-_]*)/ig;
 
         return text.replace(urlRegex, function(url) {
                 return '<a href="' + url + '">' + url + '</a>';
             })
             .replace(hashTagRegex, function(url) {
-                return '<a href="https://twitter.com/'+ url +'">' + url + '</a>';
+                return '<a href="https://twitter.com/hashtag/'+ url.slice(1, url.length) +'">' + url + '</a>';
             })
             .replace(usernameRegex, function(url) {
                 return '<a href="https://twitter.com/'+ url.slice(1, url.length) +'">' + url + '</a>';
