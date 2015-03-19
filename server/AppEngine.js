@@ -33,6 +33,7 @@ Meteor.startup(function(){
                     thumb: fav.thumbnail,
                     userId: fav.userId,
                     userInfo: fav.user,
+                    type: fav.type,
                     created: Date.now()
                 });
                 console.log(result);
