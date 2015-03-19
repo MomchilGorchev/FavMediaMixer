@@ -51,9 +51,9 @@ Template.youtube.events({
                 for (var i = 0; i < items.length; i++){
 
                     //TODO implement response display
-                    console.log(items[i]);
-
-                    console.log(items[i].id.videoId);
+                    //console.log(items[i]);
+                    //
+                    //console.log(items[i].id.videoId);
 
                     if(items[i].id.videoId !== undefined){
                         ytLink = 'https://www.youtube.com/watch?v=' + items[i].id.videoId;

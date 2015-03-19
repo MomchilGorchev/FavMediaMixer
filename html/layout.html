@@ -22,9 +22,15 @@
         {{> flashMessages}}
     </div>
 
-    <div class="player">
-        {{> youtube}}
+    <div id="player" class="overlay overlay-scale">
+        <button type="button" class="overlay-close">Close</button>
+        <div class="content">
+            <div class="player-inner">
+                {{> youtube}}
+            </div>
+        </div>
     </div>
+
 
 </template>
 
@@ -33,6 +39,6 @@
     -- include into main layout - done
     -- change styles
     -- change behaviour
-    
+
 -->
 
