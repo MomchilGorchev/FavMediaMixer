@@ -100,33 +100,37 @@ Template.youtube.events({
             parent = $(_this).closest('.video-wrapper'),
             videoId = parent.attr('data-videoid') || Session.get('videoId'),
             ytType = parent.attr('data-yttype'),
-            description = parent.find('.description').text(),
-            title = parent.find('.title-link').text(),
+            description = parent.find('.description'),
+            title = parent.find('.title-link'),
             thumb = parent.find('.video-thumb').attr('src'),
             overlay = template.find('.overlay'),
             player = $(_this).closest('.player-inner');
 
-        Session.set('videoId', videoId);
+        console.log(title);
+        console.log(description);
 
         if(dataAction === 'play'){
+            Session.set('videoId', videoId);
+            var mediaPlayer = $('#player'),
+                detailsBlock = mediaPlayer.find('.video-details');
+            detailsBlock.empty().append(
+                title.clone().detach(),
+                description.clone().detach()
+            );
 
             Tracker.autorun(function(){
                 var src = 'https://www.youtube.com/embed/'+ Session.get('videoId') +'?autoplay=1',
                     iframe = player.find('iframe');
                 iframe.attr('src', src);
                 iframe.attr('allowfullscreen', 'true');
-                player.find('.mediaPlayer .video-details').empty().prepend([
-                        parent.find('.title-link').clone().detach(),
-                        parent.find('.description').clone().detach() ]
-                );
                 iframe.addClass('opened');
             });
 
         } else if(dataAction === 'add'){
 
             var addFavourite = {
-                title: title,
-                description: description,
+                title: title.text(),
+                description: description.text(),
                 thumbnail: thumb,
                 videoId: videoId,
                 userId: Meteor.user()._id,
