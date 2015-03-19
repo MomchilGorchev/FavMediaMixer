@@ -1,6 +1,6 @@
 Template.favourites.helpers({
     favs: function(){
-       return Favourites.find({userId: Meteor.user()._id});
+       return Favourites.find({userId: Meteor.user()._id}, {sort: {created: -1}});
     },
 
     favsCount: function(){

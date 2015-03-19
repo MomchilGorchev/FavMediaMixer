@@ -1,9 +1,18 @@
 <template name="favourites">
     <section id="favourites">
         <h1>Youtube favourite list</h1>
+        <ul class="playlist-actions">
+            <li>
+                <a href="#" class="fav-action-list" data-action="play-all"><i class="fa fa-play"></i> Play All</a>
+            </li>
+            <li>
+                <a href="#" class="fav-action-list" data-action="play-share"><i class="fa fa-share"></i> Share </a>
+            </li>
+        </ul>
         <ul>
             {{#each favs}}
                 <li class="video-wrapper" data-videoId="{{videoId}}"><img class="video-thumb" src="{{thumb}}">
+                    <a class="remove-fav" href="#"><i class="fa fa-remove"></i></a>
                     <a href="https://www.youtube.com/watch?v={{videoId}}" class="title-link" target="_blank">{{title}}</a>
                     <p class="description">{{description}}</p>
                     <ul class="video-actions">

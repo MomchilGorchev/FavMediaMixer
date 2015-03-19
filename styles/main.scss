@@ -105,7 +105,6 @@ a.full-width{
 
 
 .app-body{
-  padding: 20px;
   h1{
     text-align: center;
   }
@@ -116,8 +115,11 @@ a.full-width{
     #resultBox{
       background: $nav-color;
       position: absolute;
-      width: 48%;
+      width: 50%;
+      min-width: 250px;
       z-index: 10;
+      font-size:0.8em;
+      box-shadow: $box-shadow;
       ul{
         list-style-type: none;
       }
@@ -133,16 +135,42 @@ a.full-width{
   max-width: 960px;
   margin: 0 auto;
   ul{
+    &.playlist-actions{
+      margin-bottom: 35px;
+      text-align: center;
+      font-size: 0.6em;
+      li{
+        display: inline-block;
+        margin-right: 10px;
+        border: 1px solid;
+        padding: 10px;
+        border-radius: 20px;
+        &:hover{
+          background: $action-color;
+          a{
+            text-decoration:none;
+          }
+        }
+      }
+    }
     list-style-type: none;
     padding-left: 0;
     li.video-wrapper{
+      @include vendor-transition();
       margin-bottom: 30px;
-      padding: 0 7px 40px 7px;
-      border-bottom: 1px solid $text-color;
+      padding: 7px 7px 40px;
+      background: $nav-color;
       position: relative;
+      .remove-fav{
+        position: absolute;
+        right: 5px;
+        top: -3px;
+      }
       .title-link{
         position: absolute;
         left:145px;
+        font-size: 1.5em;
+        color: $bg-color;
       }
       .video-thumb{
         width:120px;
@@ -168,6 +196,10 @@ a.full-width{
             @include vendor-transition(all, 0.05s, ease-in);
           }
         }
+      }
+      &:hover{
+        @include vendor-transition();
+        box-shadow: 0 0 15px 1px #262B2D;
       }
     }
   }

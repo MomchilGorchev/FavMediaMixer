@@ -32,7 +32,8 @@ Meteor.startup(function(){
                     videoId: fav.videoId,
                     thumb: fav.thumbnail,
                     userId: fav.userId,
-                    userInfo: fav.user
+                    userInfo: fav.user,
+                    created: Date.now()
                 });
                 console.log(result);
                 return true;

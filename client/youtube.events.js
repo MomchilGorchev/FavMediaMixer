@@ -70,7 +70,7 @@ Template.youtube.events({
 
                     var snippet = items[i].snippet,
                         current =
-                            '<li class="video-wrapper" data-yttype="'+ ytType +'" data-itemId="'+ correctId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
+                            '<li class="video-wrapper" data-yttype="'+ ytType +'" data-videoid="'+ correctId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
                                 '<a href="'+ ytLink +'" class="title-link" target="_blank">'+ snippet.title +'</a>'+
                                 '<p class="description">'+ snippet.description +'</p>'+
                                 '<ul class="video-actions">' +
@@ -98,24 +98,30 @@ Template.youtube.events({
         var _this = event.currentTarget,
             dataAction = _this.getAttribute('data-action'),
             parent = $(_this).closest('.video-wrapper'),
-            videoId = parent.attr('data-itemId'),
+            videoId = parent.attr('data-videoid') || Session.get('videoId'),
             ytType = parent.attr('data-yttype'),
             description = parent.find('.description').text(),
             title = parent.find('.title-link').text(),
             thumb = parent.find('.video-thumb').attr('src'),
-            overlay = template.find('.overlay');
+            overlay = template.find('.overlay'),
+            player = $(_this).closest('.player-inner');
+
+        Session.set('videoId', videoId);
 
         if(dataAction === 'play'){
-            var src = 'https://www.youtube.com/embed/'+ videoId +'?autoplay=1',
-                iframe = document.createElement('iframe');
-            iframe.setAttribute('src', src);
-            iframe.setAttribute('allowfullscreen', 'true');
-            $(overlay).addClass('open').find('.content').append([
-                    parent.find('.title-link').clone().detach(),
-                    parent.find('.description').clone().detach(),
-                    iframe
-                ]
-            );
+
+            Tracker.autorun(function(){
+                var src = 'https://www.youtube.com/embed/'+ Session.get('videoId') +'?autoplay=1',
+                    iframe = player.find('iframe');
+                iframe.attr('src', src);
+                iframe.attr('allowfullscreen', 'true');
+                player.find('.mediaPlayer .video-details').empty().prepend([
+                        parent.find('.title-link').clone().detach(),
+                        parent.find('.description').clone().detach() ]
+                );
+                iframe.addClass('opened');
+            });
+
         } else if(dataAction === 'add'){
 
             var addFavourite = {
@@ -138,13 +144,6 @@ Template.youtube.events({
         } else if(dataAction == 'globe'){
             window.open(parent.find('.title-link').attr('href'), '_blank');
         }
-    },
-
-    'click .overlay-close': function(event, template){
-        $('.overlay')
-            .removeClass('open')
-            .find('.content')
-            .empty();
     }
 
 });

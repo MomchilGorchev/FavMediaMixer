@@ -7,7 +7,8 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: $nav-color;
+  background: $bg-color;
+  overflow:auto;
   .overlay-close {
     width: 80px;
     height: 80px;
@@ -23,21 +24,39 @@
     z-index: 100;
   }
   .content {
-    width: 650px;
+    width: 100%;
     height: auto;
     margin: 100px auto;
     a{
       color: $text-color;
       font-size: 1.8em;
     }
-    iframe {
-      position: absolute;
-      width: 960px;
-      height: 600px;
-      top: 50%;
-      left: 50%;
-      margin-top: -300px;
-      margin-left: -480px;
+    .mediaPlayer{
+      width: auto;
+      margin: 0;
+      background: $nav-color;
+      .video-details{
+        .title-link, .description{
+          margin-top: 50px;
+          display: block;
+        }
+      }
+
+      iframe {
+        @include vendor-transition(all, 0.2s, ease-in-out);
+        opacity: 0;
+        display: none;
+        position: static;
+        width: 90%;
+        height: auto;
+        min-height: 350px;
+        margin:50px;
+        &.opened{
+          display: inline-block;
+          opacity:1;
+          @include vendor-transition(all, 0.2s, ease-in-out);
+        }
+      }
     }
   }
 }
