@@ -114,7 +114,7 @@ Template.youtube.events({
             var mediaPlayer = $('#player'),
                 detailsBlock = mediaPlayer.find('.video-details');
             detailsBlock.empty().append(
-                title.clone().detach(), 
+                title.clone().detach(),
                 description.clone().detach()
             );
 
