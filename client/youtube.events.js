@@ -145,5 +145,17 @@ Template.youtube.events({
             window.open(parent.find('.title-link').attr('href'), '_blank');
         }
     }
+});
 
+Template.favourites.events({
+    'click .remove-fav': function(e, t){
+        e.preventDefault();
+        var trigger = $(e.currentTarget),
+            dbID = trigger.closest('.video-wrapper').attr('data-dbid');
+
+        Meteor.call('removeFavourite', dbID, function(err, res){
+           err ? FlashMessages.sendError('<i class="fa fa-warning"></i> Error occurred, please try again!')
+               : FlashMessages.sendSuccess('<i class="fa fa-check"></i> Successfully removed!');
+        });
+    }
 });

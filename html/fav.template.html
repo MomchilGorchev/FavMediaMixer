@@ -11,7 +11,7 @@
         </ul>
         <ul>
             {{#each favs}}
-                <li class="video-wrapper" data-videoId="{{videoId}}"><img class="video-thumb" src="{{thumb}}">
+                <li class="video-wrapper" data-videoId="{{videoId}}" data-dbid="{{_id}}"><img class="video-thumb" src="{{thumb}}">
                     <a class="remove-fav" href="#"><i class="fa fa-remove"></i></a>
                     <a href="https://www.youtube.com/watch?v={{videoId}}" class="title-link" target="_blank">{{title}}</a>
                     <p class="description">{{description}}</p>

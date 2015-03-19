@@ -39,6 +39,19 @@ Meteor.startup(function(){
                 return true;
             }
         },
+
+        removeFavourite: function(itemId){
+            if(itemId){
+                if(Favourites.remove({_id: itemId})){
+                    return true;
+                } else {
+                    throw new Meteor.Error(500, 'Error occurred');
+                }
+            } else {
+                throw new Meteor.Error(500, 'Error occurred');
+            }
+        },
+
         // Call Auto complete API
         externalCall: function(query){
             // Could include dynamic call parameters

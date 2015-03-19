@@ -199,7 +199,7 @@ a.full-width{
       }
       &:hover{
         @include vendor-transition();
-        box-shadow: 0 0 15px 1px #262B2D;
+        box-shadow: $box-shadow;
       }
     }
   }
