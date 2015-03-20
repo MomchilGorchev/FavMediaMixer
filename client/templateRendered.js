@@ -26,6 +26,7 @@ Template.footer.rendered = function(){
         startingAngle = 180 + (-angle / 2),
         slice = angle / (menuItemNum - 1);
 
+    console.log(trigger);
     TweenMax.globalTimeScale(0.8);
 
     menuItems.each(function(i){

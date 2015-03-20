@@ -14,9 +14,15 @@
 
     {{> yield}}
 
+    {{#if currentUser}}
     <footer>
         {{> footer}}
     </footer>
+    {{else}}
+        <footer>
+            {{> footerNotLogged}}
+        </footer>
+    {{/if}}
 
     <div class="container">
         {{> flashMessages}}
@@ -46,8 +52,9 @@
 
 <!--TODO make Youtube template gloabal
     -- include into main layout - done
-    -- change styles
-    -- change behaviour
+    -- change styles - done
+    -- change behaviour - done
+    -- clean, bag and tag
 
 -->
 
