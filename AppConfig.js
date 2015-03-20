@@ -4,6 +4,11 @@
 console.log('FMM: Preparing Database...');
 // Define Collections
 Favourites = new Meteor.Collection('favourites');
+Favsongs = new Meteor.Pagination(Favourites, {
+    itemTemplate: 'favItem',
+    perPage: 5,
+    sort: {created: -1}
+});
 RssFeed = new Meteor.Collection('rssfeed');
 LastRss = new Meteor.Collection('lastrss');
 GithubRecent = new Meteor.Collection('githubrecent', {
@@ -18,9 +23,9 @@ console.log('FMM: Starting server');
 
 if(Meteor.isServer){
     // Publish all collections
-    Meteor.publish('favourites', function(){
-        return Favourites.find();
-    });
+    //Meteor.publish('favourites', function(){
+    //    return Favourites.find();
+    //});
     Meteor.publish('rssfeed', function(){
         return RssFeed.find();
     });

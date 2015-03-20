@@ -171,6 +171,7 @@ a.full-width{
         left:145px;
         font-size: 1.5em;
         color: $bg-color;
+        width:73%;
       }
       .video-thumb{
         width:120px;
@@ -417,4 +418,27 @@ footer{
       line-height: 80px;
     }
   }
+}
+
+.pagination{
+  font-size: 0.5em;
+  li{
+    & > a{
+      background: $nav-color;
+      border-color: $nav-color
+    }
+    &.active{
+      & > a{
+        background: $bg-color;
+        border-color: $bg-color;
+      }
+    }
+    &.disabled{
+      & > a{
+        background: $nav-color;
+        border-color: $nav-color;
+      }
+    }
+  }
+
 }
