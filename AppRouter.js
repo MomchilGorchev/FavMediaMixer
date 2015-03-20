@@ -4,7 +4,7 @@
 
 Router.configure({
     layoutTemplate: "mainLayout",
-    loadingTemplate: "loading",
+    loadingTemplate: "loading"
     //notFoundTemplate: "missing"
 });
 
@@ -16,7 +16,7 @@ UserAccessController = RouteController.extend({
             this.redirect("login");
         } else{
             // Subscriptions
-            Meteor.subscribe('favourites');
+            //Meteor.subscribe('favourites');
             if(currentRoute === '/rss'){
                 Meteor.subscribe('rssfeed');
                 Meteor.subscribe('lastrss');
@@ -33,7 +33,7 @@ UserAccessController = RouteController.extend({
     waitOn: function(){
         var currentRoute = Router.current().options.route._path;
         // Subscriptions
-        Meteor.subscribe('favourites');
+        //Meteor.subscribe('favourites');
         if(currentRoute === '/rss'){
             Meteor.subscribe('rssfeed');
             Meteor.subscribe('lastrss');
