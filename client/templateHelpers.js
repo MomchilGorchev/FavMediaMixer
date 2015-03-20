@@ -15,9 +15,9 @@ Template.header.helpers({
 });
 
 Template.rss.helpers({
-    rssItems: function(){
-       return RssFeed.find();
-    },
+    //rssItems: function(){
+    //   return RssFeed.find();
+    //},
 
     headlinesCount: function(){
         return RssFeed.find().count();

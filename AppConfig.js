@@ -9,8 +9,17 @@ Favsongs = new Meteor.Pagination(Favourites, {
     perPage: 5,
     sort: {created: -1}
 });
+
 RssFeed = new Meteor.Collection('rssfeed');
 LastRss = new Meteor.Collection('lastrss');
+RssNews = new Meteor.Pagination(RssFeed, {
+    itemTemplate: 'rssItem',
+    perPage: 5,
+    router: 'item-router',
+    templateName: 'rss'
+
+});
+
 GithubRecent = new Meteor.Collection('githubrecent', {
     capped: true,
     size: 500000, // 500kb size
@@ -26,9 +35,9 @@ if(Meteor.isServer){
     //Meteor.publish('favourites', function(){
     //    return Favourites.find();
     //});
-    Meteor.publish('rssfeed', function(){
-        return RssFeed.find();
-    });
+    //Meteor.publish('rssfeed', function(){
+    //    return RssFeed.find();
+    //});
     Meteor.publish('lastrss', function(){
         return LastRss.find();
     });

@@ -6,7 +6,7 @@ body{
   background: $bg-color;
   color: $text-color;
   font-family: $body-font-stack;
-  padding-bottom: 50px;
+  padding-bottom: 150px;
   i{
     color: $text-color;
     font-size:1.6em;
@@ -420,23 +420,27 @@ footer{
   }
 }
 
-.pagination{
-  font-size: 0.5em;
+ul.pagination{
+  font-size: 16px;
   li{
     & > a{
       background: $nav-color;
-      border-color: $nav-color
+      border-color: $nav-color;
+      color: $bg-color;
     }
     &.active{
       & > a{
         background: $bg-color;
         border-color: $bg-color;
+        color: $text-color;
+        z-index:0;
       }
     }
     &.disabled{
       & > a{
         background: $nav-color;
         border-color: $nav-color;
+        color: $bg-color;
       }
     }
   }

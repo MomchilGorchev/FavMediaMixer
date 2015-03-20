@@ -18,7 +18,7 @@ UserAccessController = RouteController.extend({
             // Subscriptions
             //Meteor.subscribe('favourites');
             if(currentRoute === '/rss'){
-                Meteor.subscribe('rssfeed');
+                //Meteor.subscribe('rssfeed');
                 Meteor.subscribe('lastrss');
             } else if(currentRoute === '/github'){
                 Meteor.subscribe('githubrecent');
