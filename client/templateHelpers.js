@@ -15,10 +15,6 @@ Template.header.helpers({
 });
 
 Template.rss.helpers({
-    //rssItems: function(){
-    //   return RssFeed.find();
-    //},
-
     headlinesCount: function(){
         return RssFeed.find().count();
     },
@@ -38,9 +34,6 @@ Template.github.helpers({
     recentQueries: function() {
         return GithubRecent.find({}, {sort: {created: -1}, limit: 5});
     }
-    //recentCount: function(){
-    //    return GithubRecent.find().count();
-    //}
 });
 
 Template.twitter.helpers({
