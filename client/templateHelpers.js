@@ -48,7 +48,8 @@ Template.tweet.helpers({
             hashTagRegex = /(#[a-z0-9][a-z0-9\-_]*)/ig,
             usernameRegex = /(@[a-z0-9][a-z0-9\-_]*)/ig;
 
-        return text.replace(urlRegex, function(url) {
+        return text
+            .replace(urlRegex, function(url) {
                 return '<a href="' + url + '">' + url + '</a>';
             })
             .replace(hashTagRegex, function(url) {

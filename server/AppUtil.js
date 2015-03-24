@@ -44,6 +44,8 @@ if(Meteor.isServer === true){
                     // content that should be visible after authorization succeeds.
                     //$('.pre-auth').hide();
                     //$('.post-auth').show();
+
+                    Session.set('authResult', authResult);
                     loadAPIClientInterfaces();
                 } else {
                     // Make the #login-link clickable. Attempt a non-immediate OAuth 2.0
@@ -66,6 +68,7 @@ if(Meteor.isServer === true){
                     handleAPILoaded();
                 });
             }
+
             return true;
         }
     };
