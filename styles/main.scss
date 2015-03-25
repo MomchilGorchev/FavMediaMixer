@@ -74,6 +74,13 @@ div.dropdown-menu{
 .login-container{
   margin-top: 100px;
 }
+.info-graphs{
+  margin: 100px auto;
+  div{
+    padding: 30px;
+
+  }
+}
 a.navbar-brand{
   font-family: Monoton, OpenSans sans-serif;
   font-size: 3em;
@@ -169,9 +176,9 @@ a.full-width{
       .title-link{
         position: absolute;
         left:145px;
-        font-size: 1.5em;
+        font-size: 1.2456em;
         color: $bg-color;
-        width:73%;
+        width:60%;
       }
       .video-thumb{
         width:120px;
