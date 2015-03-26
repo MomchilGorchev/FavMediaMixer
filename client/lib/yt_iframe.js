@@ -13,7 +13,11 @@ window.initiateYTPlayer = function(){
 
     Tracker.autorun(function(){
 
+<<<<<<< Updated upstream
         window.ytPlayer = new YT.Player('ytPlayer', {
+=======
+        ytPlayer = new YT.Player('ytPlayer', {
+>>>>>>> Stashed changes
             videoId: Session.get('videoId'),
             events: {
                 onReady: onPlayerReady,
@@ -24,6 +28,14 @@ window.initiateYTPlayer = function(){
         function onPlayerReady(event) {
             console.log('video played');
             event.target.playVideo();
+<<<<<<< Updated upstream
+=======
+
+            //favouriteVideos.forEach(function(item){
+            //    ytPlayer.cueVideoById(item);
+            //});
+
+>>>>>>> Stashed changes
         }
 
         console.log(favouriteVideos);
@@ -49,8 +61,12 @@ window.initiateYTPlayer = function(){
                     nextVideoTitle,
                     nextVideoDescription
                 );
-                ytPlayer.loadVideoById(nextVideoID, 5, "large");
+
+                console.log(ytPlayer);
                 Session.set('videoId', nextVideoID);
+                ytPlayer.videoId = nextVideoID;
+                ytPlayer.playVideo();
+
 
                 console.log(videoIndex);
             }

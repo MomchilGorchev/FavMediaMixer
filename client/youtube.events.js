@@ -155,5 +155,14 @@ Template.favourites.events({
            err ? FlashMessages.sendError('<i class="fa fa-warning"></i> Error occurred, please try again!')
                : FlashMessages.sendSuccess('<i class="fa fa-check"></i> Successfully removed!');
         });
+    },
+
+    'click .fav-action-list': function(e, t){
+        var trigger = $(e.currentTarget),
+            action = trigger.attr('data-action');
+        if(action === 'play'){
+            initiateYTPlayer();
+        }
     }
+
 });
