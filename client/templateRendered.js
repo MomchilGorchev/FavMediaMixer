@@ -25,8 +25,6 @@ Template.footer.rendered = function(){
         distance = 90,
         startingAngle = 180 + (-angle / 2),
         slice = angle / (menuItemNum - 1);
-
-    console.log(trigger);
     TweenMax.globalTimeScale(0.8);
 
     menuItems.each(function(i){
@@ -155,4 +153,14 @@ Template.footer.rendered = function(){
             });
         });
     }
+};
+
+Template.favItem.rendered = function(){
+    window.favouriteVideos = [];
+    var videoIDs = $('.video-wrapper');
+        $.each(videoIDs, function(key, item){
+        var _this = $(this),
+            videoId = _this.attr('data-videoid');
+        favouriteVideos.push(videoId);
+    });
 };

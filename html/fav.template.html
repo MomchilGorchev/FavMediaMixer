@@ -10,8 +10,11 @@
             </li>
         </ul>
         <ul>
-            {{> pages}}
-            {{> pagesNav}}
+            <!--{{> pages}}-->
+            <!--{{> pagesNav}}-->
+            {{#each favs}}
+                {{> favItem}}
+            {{/each}}
         </ul>
     </section>
 </template>

@@ -42,7 +42,7 @@
         }
       }
 
-      iframe {
+      .iframe {
         @include vendor-transition(all, 0.2s, ease-in-out);
         opacity: 0;
         display: none;
