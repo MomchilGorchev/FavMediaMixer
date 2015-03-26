@@ -106,8 +106,8 @@ Template.youtube.events({
             overlay = template.find('.overlay'),
             player = $(_this).closest('.player-inner');
 
-        console.log(title);
-        console.log(description);
+        //console.log(title);
+        //console.log(description);
 
         if(dataAction === 'play'){
             Session.set('videoId', videoId);
@@ -118,13 +118,7 @@ Template.youtube.events({
                 description.clone().detach()
             );
 
-            Tracker.autorun(function(){
-                var src = 'https://www.youtube.com/embed/'+ Session.get('videoId') +'?autoplay=1',
-                    iframe = player.find('iframe');
-                iframe.attr('src', src);
-                iframe.attr('allowfullscreen', 'true');
-                iframe.addClass('opened');
-            });
+            initiateYTPlayer();
 
         } else if(dataAction === 'add'){
 
@@ -161,5 +155,14 @@ Template.favourites.events({
            err ? FlashMessages.sendError('<i class="fa fa-warning"></i> Error occurred, please try again!')
                : FlashMessages.sendSuccess('<i class="fa fa-check"></i> Successfully removed!');
         });
+    },
+
+    'click .fav-action-list': function(e, t){
+        var trigger = $(e.currentTarget),
+            action = trigger.attr('data-action');
+        if(action === 'play'){
+            initiateYTPlayer();
+        }
     }
+
 });

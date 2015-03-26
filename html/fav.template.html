@@ -3,15 +3,18 @@
         <h1>Youtube favourite list</h1>
         <ul class="playlist-actions">
             <li>
-                <a href="#" class="fav-action-list" data-action="play-all"><i class="fa fa-play"></i> Play All</a>
+                <a href="#" class="fav-action-list" data-action="play"><i class="fa fa-play"></i> Play All</a>
             </li>
             <li>
-                <a href="#" class="fav-action-list" data-action="play-share"><i class="fa fa-share"></i> Share </a>
+                <a href="#" class="fav-action-list" data-action="share"><i class="fa fa-share"></i> Share </a>
             </li>
         </ul>
         <ul>
-            {{> pages}}
-            {{> pagesNav}}
+            <!--{{> pages}}-->
+            <!--{{> pagesNav}}-->
+            {{#each favs}}
+                {{> favItem}}
+            {{/each}}
         </ul>
     </section>
 </template>

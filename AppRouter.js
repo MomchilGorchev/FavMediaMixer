@@ -16,7 +16,7 @@ UserAccessController = RouteController.extend({
             this.redirect("login");
         } else{
             // Subscriptions
-            //Meteor.subscribe('favourites');
+            Meteor.subscribe('favourites');
             if(currentRoute === '/rss'){
                 //Meteor.subscribe('rssfeed');
                 Meteor.subscribe('lastrss');
