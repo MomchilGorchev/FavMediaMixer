@@ -1,15 +1,9 @@
 /**
  * Created by momchillgorchev on 24/02/15.
  */
-console.log('FMM: Preparing Database...');
+//console.log('FMM: Preparing Database...');
 // Define Collections
 Favourites = new Meteor.Collection('favourites');
-//Favsongs = new Meteor.Pagination(Favourites, {
-//    itemTemplate: 'favItem',
-//    perPage: 5,
-//    sort: {created: -1}
-//});
-
 RssFeed = new Meteor.Collection('rssfeed');
 LastRss = new Meteor.Collection('lastrss');
 RssNews = new Meteor.Pagination(RssFeed, {
@@ -17,7 +11,6 @@ RssNews = new Meteor.Pagination(RssFeed, {
     perPage: 5,
     router: 'item-router',
     templateName: 'rss'
-
 });
 
 GithubRecent = new Meteor.Collection('githubrecent', {
@@ -27,8 +20,8 @@ GithubRecent = new Meteor.Collection('githubrecent', {
 });
 TweetsTemp = new Meteor.Collection('tweets');
 
-console.log('FMM: Database -- OK');
-console.log('FMM: Starting server');
+//console.log('FMM: Database -- OK');
+//console.log('FMM: Starting server');
 
 if(Meteor.isServer){
     // Publish all collections

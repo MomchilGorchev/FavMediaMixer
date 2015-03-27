@@ -106,19 +106,22 @@ Template.youtube.events({
             overlay = template.find('.overlay'),
             player = $(_this).closest('.player-inner');
 
-        //console.log(title);
-        //console.log(description);
-
         if(dataAction === 'play'){
-            Session.set('videoId', videoId);
+
+            if(Session.get('video-playing') === true){
+                $('#ytPlayer').attr('src', 'https://www.youtube.com/embed/'+ videoId +
+                    '?enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000');
+                Session.set('currently-playing', videoId);
+            } else {
+                Session.set('currently-playing', videoId);
+                Session.set('video-playing', true);
+            }
             var mediaPlayer = $('#player'),
                 detailsBlock = mediaPlayer.find('.video-details');
             detailsBlock.empty().append(
                 title.clone().detach(),
                 description.clone().detach()
             );
-
-            initiateYTPlayer();
 
         } else if(dataAction === 'add'){
 
