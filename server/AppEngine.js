@@ -93,6 +93,7 @@ Meteor.startup(function(){
                                 params: {
                                     'part': 'snippet',
                                     'q': query,
+                                    'maxResults': 20,
                                     'key': AppKeys.getKey('Youtube')
                                 }
                             }

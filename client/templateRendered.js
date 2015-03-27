@@ -157,10 +157,13 @@ Template.footer.rendered = function(){
 
 Template.favItem.rendered = function(){
     window.favouriteVideos = [];
-    var videoIDs = $('.video-wrapper');
-        $.each(videoIDs, function(key, item){
-        var _this = $(this),
-            videoId = _this.attr('data-videoid');
+    var videos = Favourites.find().fetch(),
+        videosCount = videos.length,
+        i = null;
+    for (i = 0; i < videosCount; i++){
+        var _this = videos[i],
+            videoId = _this.videoId;
         favouriteVideos.push(videoId);
-    });
+    }
+    favouriteVideos.reverse();
 };
