@@ -1,5 +1,8 @@
 <template name="favItem">
-    <li class="video-wrapper" data-videoid="{{videoId}}" data-dbid="{{_id}}"><img class="video-thumb" src="{{thumb}}">
+    <li class="video-wrapper" data-videoid="{{videoId}}" data-dbid="{{_id}}">
+
+        <img class="video-thumb" src="{{thumb}}" />
+        <span class="running-label">Playing</span>
         <a class="remove-fav" href="#"><i class="fa fa-remove"></i></a>
         <a href="https://www.youtube.com/watch?v={{videoId}}" class="title-link" target="_blank">{{title}}</a>
         <p class="description">{{description}}</p>

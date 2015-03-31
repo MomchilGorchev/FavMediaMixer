@@ -109,9 +109,11 @@ Template.youtube.events({
         if(dataAction === 'play'){
 
             if(Session.get('video-playing') === true){
+                // CHANGE THIS TO WORK ON HEROKU
                 $('#ytPlayer').attr('src', 'https://www.youtube.com/embed/'+ videoId +
                     '?enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000');
                 Session.set('currently-playing', videoId);
+                //parent.addClass('running');
             } else {
                 Session.set('currently-playing', videoId);
                 Session.set('video-playing', true);
