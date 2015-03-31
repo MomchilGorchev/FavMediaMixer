@@ -168,6 +168,21 @@ a.full-width{
       padding: 7px 7px 40px;
       background: $nav-color;
       position: relative;
+      &.running{
+        border: 3px dashed $text-color;
+        @include vendor-transition();
+        .running-label{
+          opacity:1;
+        }
+      }
+      .running-label{
+        opacity:0;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: $text-color;
+        color: $bg-color;
+      }
       .remove-fav{
         position: absolute;
         right: 5px;

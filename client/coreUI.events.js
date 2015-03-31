@@ -1,5 +1,13 @@
 Template.footer.events({
-    'click #open-mediaplayer': function(e, t){
+    'click .open-mediaplayer': function(e, t){
+        var trigger = $(e.currentTarget),
+            player = $('#player');
+        player.addClass('open');
+    }
+});
+
+Template.header.events({
+    'click .open-mediaplayer': function(e, t){
         var trigger = $(e.currentTarget),
             player = $('#player');
         player.addClass('open');

@@ -58,8 +58,9 @@ Template.favourites.rendered = function(){
 
                         // Update the session variable and the video src
                         Session.set('currently-playing', nextVideoID);
-                        //
-                        $('#ytPlayer').attr('src', 'https://www.youtube.com/embed/'+ nextVideoID +'?enablejsapi=1&origin=http%3A%2F%2Ffavmediamixer.herokuapp.com');
+                        // CHANGE THIS TO WORK ON HEROKU
+                        $('#ytPlayer').attr('src', 'https://www.youtube.com/embed/'+ nextVideoID +'?enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000');
+                        //nextVideoContainer.addClass('running');
                     }
                 }
 
