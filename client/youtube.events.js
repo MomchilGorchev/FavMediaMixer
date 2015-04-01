@@ -30,7 +30,6 @@ Template.youtube.events({
                     resultBox.innerHTML = '';
                     resultBox.appendChild(resultList);
                 }
-
             });
         }
     },
@@ -64,7 +63,7 @@ Template.youtube.events({
                         ytLink = 'https://www.youtube.com/user/' + items[i].snippet.channelTitle;
                         correctId = items[i].id.channelId;
                         ytType = 'channel';
-                        mainAction = 'globe'
+                        mainAction = 'globe';
                     }
 
 
@@ -107,16 +106,21 @@ Template.youtube.events({
             player = $(_this).closest('.player-inner');
 
         if(dataAction === 'play'){
-
             if(Session.get('video-playing') === true){
                 // CHANGE THIS TO WORK ON HEROKU
                 $('#ytPlayer').attr('src', 'https://www.youtube.com/embed/'+ videoId +
                     '?enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000');
                 Session.set('currently-playing', videoId);
-                //parent.addClass('running');
+                parent.addClass('running');
+                $(_this).find('i').removeClass('fa-play').addClass('fa-pause');
+                $(_this).attr('data-action', 'pause');
+
             } else {
                 Session.set('currently-playing', videoId);
                 Session.set('video-playing', true);
+                parent.addClass('running');
+                $(_this).find('i').removeClass('fa-play').addClass('fa-pause');
+                $(_this).attr('data-action', 'pause');
             }
             var mediaPlayer = $('#player'),
                 detailsBlock = mediaPlayer.find('.video-details');
@@ -146,6 +150,10 @@ Template.youtube.events({
             });
         } else if(dataAction == 'globe'){
             window.open(parent.find('.title-link').attr('href'), '_blank');
+        }
+        else if(dataAction == 'pause'){
+            Session.set('video-playing', false);
+            Session.set('video-paused', true);
         }
     }
 });

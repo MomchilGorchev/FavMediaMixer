@@ -45,6 +45,7 @@ Template.favourites.rendered = function(){
                         if(nextVideoIndex >= favouriteVideos.length - 1 || nextVideoIndex === -1){
                             nextVideoIndex = 0;
                         }
+                        $('*[data-videoid="'+ favouriteVideos[videoIndex] +'"]').removeClass('running');
                         var nextVideoID = favouriteVideos[nextVideoIndex],
                             nextVideoContainer = $('*[data-videoid="'+ nextVideoID +'"]'),
                             nextVideoTitle = nextVideoContainer.find('.title-link').clone().detach(),
@@ -60,7 +61,7 @@ Template.favourites.rendered = function(){
                         Session.set('currently-playing', nextVideoID);
                         // CHANGE THIS TO WORK ON HEROKU
                         $('#ytPlayer').attr('src', 'https://www.youtube.com/embed/'+ nextVideoID +'?enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000');
-                        //nextVideoContainer.addClass('running');
+                        nextVideoContainer.addClass('running');
                     }
                 }
 
@@ -71,6 +72,9 @@ Template.favourites.rendered = function(){
 
                 // Show the iFrame
                 $('#ytPlayer').addClass('opened');
+            }
+            else if(Session.get('video-paused') === true){
+                stopVideo();
             }
         });
     };
