@@ -26,7 +26,7 @@ Template.twitter.events({
                  Meteor.call('twSearchApi', query, true, 'TweetsTemp', function(err, res){
                      if (err){
                          // If error display error message
-                         FlashMessages.sendError('Error: '+ err.error);
+                         FlashMessages.sendError(err);
                          // Hide spinner
                          $(trigger).removeAttr('disabled').html('<i class="fa fa-cloud-download"></i> Get Feed');
                      } else {

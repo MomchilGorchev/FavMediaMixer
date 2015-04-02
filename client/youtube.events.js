@@ -70,6 +70,7 @@ Template.youtube.events({
                     var snippet = items[i].snippet,
                         current =
                             '<li class="video-wrapper" data-yttype="'+ ytType +'" data-videoid="'+ correctId +'"><img class="video-thumb" src="'+ snippet.thumbnails.default.url +'">' +
+                                '<span class="running-label">Playing</span>'+
                                 '<a href="'+ ytLink +'" class="title-link" target="_blank">'+ snippet.title +'</a>'+
                                 '<p class="description">'+ snippet.description +'</p>'+
                                 '<ul class="video-actions">' +
@@ -111,6 +112,7 @@ Template.youtube.events({
                 $('#ytPlayer').attr('src', 'https://www.youtube.com/embed/'+ videoId +
                     '?enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000');
                 Session.set('currently-playing', videoId);
+                $('.video-wrapper').removeClass('running');
                 parent.addClass('running');
                 $(_this).find('i').removeClass('fa-play').addClass('fa-pause');
                 $(_this).attr('data-action', 'pause');
@@ -118,9 +120,11 @@ Template.youtube.events({
             } else {
                 Session.set('currently-playing', videoId);
                 Session.set('video-playing', true);
+                $('.video-wrapper').removeClass('running');
                 parent.addClass('running');
-                $(_this).find('i').removeClass('fa-play').addClass('fa-pause');
-                $(_this).attr('data-action', 'pause');
+
+                //$(_this).find('i').removeClass('fa-play').addClass('fa-pause');
+                //$(_this).attr('data-action', 'pause');
             }
             var mediaPlayer = $('#player'),
                 detailsBlock = mediaPlayer.find('.video-details');
@@ -151,10 +155,10 @@ Template.youtube.events({
         } else if(dataAction == 'globe'){
             window.open(parent.find('.title-link').attr('href'), '_blank');
         }
-        else if(dataAction == 'pause'){
-            Session.set('video-playing', false);
-            Session.set('video-paused', true);
-        }
+        //else if(dataAction == 'pause'){
+        //    Session.set('video-playing', false);
+        //    Session.set('video-paused', true);
+        //}
     }
 });
 
@@ -174,6 +178,15 @@ Template.favourites.events({
         var trigger = $(e.currentTarget),
             action = trigger.attr('data-action');
         if(action === 'play'){
+            console.log(favouriteVideos[0]);
+            var parent = $('*[data-videoid="'+ favouriteVideos[0] +'"]'),
+                videoTitle = parent.find('.title-link').clone().detach(),
+                videoDescription = parent.find('.description').clone().detach();
+            Session.set('currently-playing', favouriteVideos[0]);
+            Session.set('video-playing', true);
+            $('#ytPlayer').attr('src', 'https://www.youtube.com/embed/'+ favouriteVideos[0] +
+            '?enablejsapi=1&origin=http%3A%2F%2Flocalhost%3A3000');
+            $('#player').find('.video-details').append(videoTitle, videoDescription);
             initiateYTPlayer();
         }
     }

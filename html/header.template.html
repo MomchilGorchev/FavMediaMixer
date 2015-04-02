@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {{#if currentUser}}
                     <ul class="nav navbar-nav">
-                        <li class="open-mediaplayer"><a href="#"><i class="fa fa-youtube fa-2x"></i> <span class="link-text">Youtube</span></a></li>
+                        <li class="open-mediaplayer"><a href="#"><i class="fa fa-youtube fa-2x"></i> <span class="link-text">{{#if iconSwitch}}<span id="music-playing" class="fa fa-music fa-2x"></span> {{else}}Youtube{{/if}}</span></a></li>
                         <!--<li><a href=""><i class="fa fa-google fa-2x" disabled></i> <span class="link-text">Google Drive</span></a></li>-->
                         <li><a href="/github"><i class="fa fa-github fa-2x"></i> <span class="link-text">Github</span></a></li>
                         <li><a href="/twitter"><i class="fa fa-twitter fa-2x"></i> <span class="link-text">Twitter</span></a></li>

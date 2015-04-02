@@ -1,3 +1,47 @@
+
+Template.home.rendered = function(){
+    Session.set('x', ['x', 900, 1200, 1500, 1800, 2100]);
+    Session.set('data1', ['data1', 30, 200, 100, 400, 150]);
+    Session.set('data2', ['data2', 20, 180, 240, 100, 190]);
+    Session.set('System Health', 100);
+
+    var usageChart = c3.generate({
+        bindto: this.find('#usage-chart'),
+        data: {
+            xs: {
+                'data1': 'x',
+                'data2': 'x'
+            },
+            columns: [['x'],['data1'],['data2']]
+        }
+    });
+
+    var healthChart = c3.generate({
+        bindto: this.find('#health-chart'),
+        data: {
+            columns: [
+                ['System Health', 100]
+            ],
+            type: 'gauge'
+        },
+        size: {
+            height: 180
+        }
+    });
+
+    this.autorun(function (tracker) {
+        usageChart.load({columns: [
+            Session.get('x'),
+            Session.get('data1'),
+            Session.get('data2'),
+            []
+        ]});
+        healthChart.load({columns: [
+            Session.get('System Health')
+        ]});
+    });
+};
+
 Template._loginButtonsLoggedOutDropdown.rendered = function(){
     var loginDD = document.getElementById('login-dropdown-list'),
         ddLink = loginDD.querySelector('.dropdown-toggle'),
