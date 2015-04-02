@@ -268,7 +268,7 @@ Meteor.startup(function(){
          * @param collection - the collection to be cleared
          */
         clearTempCollection: function(collection){
-            if(global[collection].find().count() > 0){
+            if(global[collection].find() !== false){
                 if(global[collection].remove({})){
                     return true;
                 }

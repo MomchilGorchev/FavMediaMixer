@@ -11,6 +11,11 @@ Template.favourites.helpers({
 Template.header.helpers({
     favsCount: function(){
         return Favourites.find({userId: Meteor.user()._id}).count();
+    },
+    iconSwitch: function(){
+        if(Session.get('video-playing') === true){
+            return true;
+        }
     }
 });
 
