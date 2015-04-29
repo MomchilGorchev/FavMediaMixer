@@ -12,6 +12,7 @@ RssNews = new Meteor.Pagination(RssFeed, {
     router: 'item-router',
     templateName: 'rss'
 });
+Playlists = new Meteor.Collection('playlists');
 
 GithubRecent = new Meteor.Collection('githubrecent', {
     capped: true,
@@ -27,6 +28,9 @@ if(Meteor.isServer){
     // Publish all collections
     Meteor.publish('favourites', function(){
         return Favourites.find();
+    });
+    Meteor.publish('playlists', function(){
+        return Playlists.find();
     });
     //Meteor.publish('rssfeed', function(){
     //    return RssFeed.find();
