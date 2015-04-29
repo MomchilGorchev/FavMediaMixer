@@ -24,6 +24,8 @@ UserAccessController = RouteController.extend({
                 Meteor.subscribe('githubrecent');
             } else if(currentRoute === '/twitter'){
                 Meteor.subscribe('tweets');
+            } else if(currentRoute === '/playlists'){
+                Meteor.subscribe('playlists');
             }
             // After IR > 1.* you need to use this.next()
             // for better use of connection middleware
@@ -41,6 +43,8 @@ UserAccessController = RouteController.extend({
             Meteor.subscribe('githubrecent');
         } else if(currentRoute === '/twitter'){
             Meteor.subscribe('tweets');
+        } else if(currentRoute === '/playlists'){
+            Meteor.subscribe('playlists');
         }
     }
 });
@@ -80,6 +84,15 @@ Router.map(function () {
         path: '/rss',
         controller: UserAccessController
     });
+
+    this.route('playlists', {
+        path: '/playlists/:_id',
+        data: function(){
+            return Playlists.findOne({_id: this.params._id});
+        },
+        controller: UserAccessController
+    });
+
 
     this.route('login', {
         path: '/login',

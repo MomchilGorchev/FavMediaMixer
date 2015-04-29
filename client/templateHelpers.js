@@ -8,6 +8,12 @@ Template.favourites.helpers({
     }
 });
 
+Template.playlists.helpers({
+    plData: function(){
+        return Playlists.find();;
+    }
+});
+
 Template.header.helpers({
     favsCount: function(){
         return Favourites.find({userId: Meteor.user()._id}).count();
