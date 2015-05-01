@@ -343,9 +343,13 @@ Template.favourites.events({
             };
 
             Meteor.call('savePlaylist', playlist, function(err, res){
-                err ? FlashMessages.sendError('<i class="fa fa-warning"></i> Error occurred, please try again!')
-                    : FlashMessages.sendSuccess('<i class="fa fa-check"></i> Successfully saved!');
-                console.log(res);
+                if(err){
+                    FlashMessages.sendError('<i class="fa fa-warning"></i> Error occurred, please try again!')
+                } else {
+                    FlashMessages.sendSuccess('<i class="fa fa-check"></i> Successfully saved!');
+                    alert(window.location.origin + '/playlists/' + res);
+                }
+
                 //Response handling here;
             });
         }
