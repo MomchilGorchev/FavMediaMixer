@@ -36,7 +36,6 @@ Meteor.startup(function(){
                     type: fav.type,
                     created: Date.now()
                 });
-                console.log(result);
                 return true;
             }
         },
@@ -50,6 +49,15 @@ Meteor.startup(function(){
                 }
             } else {
                 throw new Meteor.Error(500, 'Error occurred');
+            }
+        },
+
+        savePlaylist: function(pl){
+            if(pl){
+                return Playlists.insert({
+                    videos: pl.videos,
+                    created: Date.now()
+                });
             }
         },
 

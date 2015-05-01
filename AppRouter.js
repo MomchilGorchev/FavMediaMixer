@@ -17,15 +17,14 @@ UserAccessController = RouteController.extend({
         } else{
             // Subscriptions
             Meteor.subscribe('favourites');
+            Meteor.subscribe('playlists');
             if(currentRoute === '/rss'){
                 //Meteor.subscribe('rssfeed');
                 Meteor.subscribe('lastrss');
             } else if(currentRoute === '/github'){
                 Meteor.subscribe('githubrecent');
-            } else if(currentRoute === '/twitter'){
+            } else if(currentRoute === '/twitter') {
                 Meteor.subscribe('tweets');
-            } else if(currentRoute === '/playlists'){
-                Meteor.subscribe('playlists');
             }
             // After IR > 1.* you need to use this.next()
             // for better use of connection middleware
@@ -36,6 +35,7 @@ UserAccessController = RouteController.extend({
         var currentRoute = Router.current().options.route._path;
         // Subscriptions
         Meteor.subscribe('favourites');
+        Meteor.subscribe('playlists');
         if(currentRoute === '/rss'){
             Meteor.subscribe('rssfeed');
             Meteor.subscribe('lastrss');
@@ -43,8 +43,6 @@ UserAccessController = RouteController.extend({
             Meteor.subscribe('githubrecent');
         } else if(currentRoute === '/twitter'){
             Meteor.subscribe('tweets');
-        } else if(currentRoute === '/playlists'){
-            Meteor.subscribe('playlists');
         }
     }
 });
@@ -86,9 +84,13 @@ Router.map(function () {
     });
 
     this.route('playlists', {
-        path: '/playlists/:_id',
+        path: 'playlists/:_id',
         data: function(){
-            return Playlists.findOne({_id: this.params._id});
+            var result = Playlists.findOne({_id: this.params._id});
+            if(result){
+                return result;
+            }
+
         },
         controller: UserAccessController
     });
