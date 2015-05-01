@@ -1,8 +1,10 @@
 <template name="playlists">
     <div class="pl-body">
         <h1>Playlist page</h1>
-        {{#each plData}}
-            <p>Bump</p>
-        {{/each}}
+        <ul>
+            {{#each this.videos}}
+                {{> favItem}}
+            {{/each}}
+        </ul>
     </div>
 </template>
