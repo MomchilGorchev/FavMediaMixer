@@ -8,7 +8,7 @@ RssFeed = new Meteor.Collection('rssfeed');
 LastRss = new Meteor.Collection('lastrss');
 RssNews = new Meteor.Pagination(RssFeed, {
     itemTemplate: 'rssItem',
-    perPage: 5,
+    perPage: 10,
     router: 'item-router',
     templateName: 'rss'
 });
@@ -20,12 +20,16 @@ GithubRecent = new Meteor.Collection('githubrecent', {
     max: 5        // Max amount of documents
 });
 TweetsTemp = new Meteor.Collection('tweets');
+ApiCalls = new Meteor.Collection('apicalls');
 
 //console.log('FMM: Database -- OK');
 //console.log('FMM: Starting server');
 
 if(Meteor.isServer){
     // Publish all collections
+    Meteor.publish('apicalls', function(){
+        return ApiCalls.find();
+    });
     Meteor.publish('favourites', function(){
         return Favourites.find();
     });

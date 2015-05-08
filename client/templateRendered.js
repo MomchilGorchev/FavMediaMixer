@@ -1,19 +1,43 @@
 
 Template.home.rendered = function(){
-    Session.set('x', ['x', 900, 1200, 1500, 1800, 2100]);
-    Session.set('data1', ['data1', 30, 200, 100, 400, 150]);
-    Session.set('data2', ['data2', 20, 180, 240, 100, 190]);
+
+    var apiCalls = ApiCalls.find({}).fetch(),
+        results = apiCalls.length, ytCalls = 0, rssCalls = 0, twCalls = 0, ghCalls = 0;
+
+
+    for (var i = 0; i < results; i++){
+        if(apiCalls[i].api === 'YouTube'){
+            ytCalls++;
+        } else if(apiCalls[i].api === 'RssFeed'){
+            rssCalls++;
+        } else if(apiCalls[i].api === 'Twitter'){
+            twCalls++;
+        } else if(apiCalls[i].api === 'GitHub'){
+            ghCalls++;
+        }
+    }
+
+    console.log(apiCalls);
+
+    Session.set('YouTube', ytCalls);
+    Session.set('RssFeed', rssCalls);
+    Session.set('Twitter', twCalls);
+    Session.set('GitHub', ghCalls);
     Session.set('System Health', 100);
 
     var usageChart = c3.generate({
         bindto: this.find('#usage-chart'),
         data: {
-            xs: {
-                'data1': 'x',
-                'data2': 'x'
-            },
-            columns: [['x'],['data1'],['data2']]
+            // iris data from R
+            columns: [
+                ['YouTube', ytCalls],
+                ['Rss Feed', rssCalls],
+                ['Twitter', twCalls],
+                ['GitHub', ghCalls]
+            ],
+            type: 'pie'
         }
+
     });
 
     var healthChart = c3.generate({
@@ -31,9 +55,10 @@ Template.home.rendered = function(){
 
     this.autorun(function (tracker) {
         usageChart.load({columns: [
-            Session.get('x'),
-            Session.get('data1'),
-            Session.get('data2'),
+            Session.get('YouTube'),
+            Session.get('RssFeed'),
+            Session.get('Twitter'),
+            Session.get('GitHub'),
             []
         ]});
         healthChart.load({columns: [

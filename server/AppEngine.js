@@ -61,6 +61,23 @@ Meteor.startup(function(){
             }
         },
 
+        recordApiCall: function(api){
+            var result = ApiCalls.find({api: api}, {}).fetch();
+            console.log('Result is: '+ result.length);
+            if(result.length > 0){
+                ApiCalls.update({}, {
+                    api: api,
+                    calls: result[0].calls + 1
+                });
+                //console.log(result);
+            } else {
+                ApiCalls.insert({
+                    api: api,
+                    calls: 1
+                });
+            }
+        },
+
         // Call Auto complete API
         externalCall: function(query){
             // Could include dynamic call parameters
@@ -112,6 +129,9 @@ Meteor.startup(function(){
                         return false;
                     }
                     if (result.statusCode === 200 && result.content !== '') {
+                        Meteor.call('recordApiCall', 'YouTube', function(res, err){
+                            err ? console.log(err) : console.log(res);
+                        });
                         return result.content;
                     }
                 }
@@ -177,6 +197,11 @@ Meteor.startup(function(){
                             // TODO Implement db cleanup here
                             console.log('Already exist');
                         }
+
+                        Meteor.call('recordApiCall', 'GitHub', function(res, err){
+                            err ? console.log(err) : console.log(res);
+                        });
+
                         return result.content;
                     }
                 }
@@ -249,6 +274,9 @@ Meteor.startup(function(){
                                         created: Date.now()
                                     });
                                     // End
+                                    Meteor.call('recordApiCall', 'RssFeed', function(res, err){
+                                        err ? console.log(err) : console.log(res);
+                                    });
                                     return true;
                                 }
                             });
@@ -315,10 +343,13 @@ Meteor.startup(function(){
             if(query){
 
                 twitterSearch.search({'q': query}, function(err, res){
-                    console.log(res);
+                    //console.log(res);
                     future['return'](res);
                 });
 
+                Meteor.call('recordApiCall', 'Twitter', function(res, err){
+                    err ? console.log(err) : console.log(res);
+                });
                 return future.wait();
             } else {
                 return false;
