@@ -18,6 +18,7 @@ UserAccessController = RouteController.extend({
             // Subscriptions
             Meteor.subscribe('favourites');
             Meteor.subscribe('playlists');
+            Meteor.subscribe('apicalls');
             if(currentRoute === '/rss'){
                 //Meteor.subscribe('rssfeed');
                 Meteor.subscribe('lastrss');
@@ -36,6 +37,7 @@ UserAccessController = RouteController.extend({
         // Subscriptions
         Meteor.subscribe('favourites');
         Meteor.subscribe('playlists');
+        Meteor.subscribe('apicalls');
         if(currentRoute === '/rss'){
             Meteor.subscribe('rssfeed');
             Meteor.subscribe('lastrss');

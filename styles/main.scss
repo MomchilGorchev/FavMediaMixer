@@ -1,6 +1,7 @@
 /* CSS declarations go here */
 @import 'mixins';
 @import "overlay";
+@import "media_queries";
 
 body{
   background: $bg-color;
@@ -287,6 +288,9 @@ a.full-width{
 .rssItem{
   padding: 7px;
   margin: 10px;
+  width:48%;
+  float:left;
+  height:200px;
   background: darken($bg-color, 15%);
   .pubDate{
     color: $acent-color;
@@ -295,7 +299,7 @@ a.full-width{
     width: 70%;
   }
   .rssItem-thumb{
-    margin-top: -45px;
+    margin-top: 0;
     margin-right: 25px;
   }
 }

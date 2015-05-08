@@ -1,0 +1,24 @@
+@media all and (max-width: 1144px){
+  div.rssItem{
+    width:47%;
+  }
+}
+
+@media all and (max-width:1000px){
+  div.rssItem{
+    width:100%;
+  }
+}
+
+@media all and (max-width:500px){
+  div.rssItem{
+    position: relative;
+    .pubDate{
+      position: absolute;
+      top: 0;
+    }
+    .rssItem-thumb{
+      margin-top: 0;
+    }
+  }
+}
