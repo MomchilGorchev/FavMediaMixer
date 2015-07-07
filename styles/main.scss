@@ -4,7 +4,9 @@
 @import "media_queries";
 
 body{
-  background: $bg-color;
+  background: url(https://download.unsplash.com/photo-1428550670225-15f007f6f1ba);
+  background-size: cover;
+  //@include apply-filter(blur, 10px);
   color: $text-color;
   font-family: $body-font-stack;
   padding-bottom: 150px;
