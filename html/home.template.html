@@ -1,5 +1,6 @@
 <template name="home">
     <h1>Dashboard</h1>
+
     <div class="forecast-wrapper">
         <iframe
             id="forecast_embed"
@@ -8,17 +9,17 @@
             height="245"
             width="100%"
             src="http://forecast.io/embed/#lat=51.5072&lon=0.1275&name=London, UK&color=#eaeaea&font=Georgia&units=uk">
-        </iframe>
-    </div>
+    </iframe>
+</div>
+
 
 
     <section class="dashboard-chart">
         <div class="row container">
-            <div class="col-md-6 col-xs-12">
-                <section class="dashboard-chart">
-                    <div id="usage-chart"></div>
-                </section>
-            </div>
+
+            <div class="col-md-6 col-xs-12">    <section class="dashboard-chart">
+                <div id="usage-chart"></div>
+            </section></div>
             <div class="col-md-6 col-xs-12" id="health-chart"></div>
         </div>
 
