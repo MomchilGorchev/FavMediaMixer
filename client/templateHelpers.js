@@ -22,10 +22,13 @@ Template.header.helpers({
 });
 
 Template.rss.helpers({
+<<<<<<< HEAD
     //rssItems: function(){
     //   return RssFeed.find();
     //},
 
+=======
+>>>>>>> 41ef65e1c0b86d88db8d956082c066cac80c4bba
     headlinesCount: function(){
         return RssFeed.find().count();
     },
@@ -45,9 +48,6 @@ Template.github.helpers({
     recentQueries: function() {
         return GithubRecent.find({}, {sort: {created: -1}, limit: 5});
     }
-    //recentCount: function(){
-    //    return GithubRecent.find().count();
-    //}
 });
 
 Template.twitter.helpers({

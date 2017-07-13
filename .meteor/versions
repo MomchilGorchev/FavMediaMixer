@@ -8,7 +8,11 @@ anti:i18n@0.4.3
 autoupdate@1.2.1
 base64@1.0.3
 binary-heap@1.0.3
+<<<<<<< HEAD
 blaze@2.1.2
+=======
+blaze@2.1.1
+>>>>>>> 41ef65e1c0b86d88db8d956082c066cac80c4bba
 blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
