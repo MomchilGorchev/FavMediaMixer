@@ -22,13 +22,10 @@ Template.header.helpers({
 });
 
 Template.rss.helpers({
-<<<<<<< HEAD
-    //rssItems: function(){
-    //   return RssFeed.find();
-    //},
+    rssItems: function(){
+      return RssFeed.find();
+    },
 
-=======
->>>>>>> 41ef65e1c0b86d88db8d956082c066cac80c4bba
     headlinesCount: function(){
         return RssFeed.find().count();
     },
